@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CUEMe4/9v4lHBlwhPXzxhToTajY1wXJ61B2dAeYprIWy5sTVfHio+n0V9jB80CUWIFCa5xGIyVMyma+vPZdzcQ==",
+  "dgSpecHash": "ZtfvwrUPP0VFW0kFJXdaM6WpkYcy9jU3p76UKKMMZqR7IsQpIUrP3ig52I9PVa11l+2CeH3lrLlQKnXJahUmig==",
   "success": true,
-  "projectFilePath": "D:\\Project\\HandMade\\HandCraft.csproj",
+  "projectFilePath": "C:\\Users\\pomaz\\Documents\\GitHub\\HandCraft\\HandCraft.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\GuraL\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+    "C:\\Users\\pomaz\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
   ],
   "logs": []
 }
