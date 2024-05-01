@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CUEMe4/9v4lHBlwhPXzxhToTajY1wXJ61B2dAeYprIWy5sTVfHio+n0V9jB80CUWIFCa5xGIyVMyma+vPZdzcQ==",
+  "success": true,
+  "projectFilePath": "D:\\Project\\HandMade\\HandCraft.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\GuraL\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+  ],
+  "logs": []
+}
