@@ -16,5 +16,6 @@ namespace HandCraft.DataBase
         public string? Description { get; set; }
         [property: Required]
         public DateTime Birthday { get; set; }
+        public ICollection<UserRoleDB> UserRoles { get; set; } = new List<UserRoleDB>();
     }
 }

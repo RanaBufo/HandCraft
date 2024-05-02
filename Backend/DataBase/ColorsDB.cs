@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using HandCraft.DataBase;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
-    public class Product_Composition
+    public class ColorDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
         [Required]
-        public int IdProduct { get; set; }
-        [Required]
-        public int IdComposition { get; set; }
+        public string Name { get; set; }
+        public ICollection<ProductColorDB> ProductColor {  get; set; } = new List<ProductColorDB>();
     }
-}
 }

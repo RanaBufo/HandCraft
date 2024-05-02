@@ -1,24 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using HandCrafter.DataBase;
 
 namespace HandCraft.DataBase
 {
-    public class Product
+    public class ProductCategoryDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
-        
-        public string? Description { get; set; }
+        public int IdProduct { get; set; }
         [Required]
-        public double Price { get; set; }
-        [Required]
-        public double Discount { get; set; }
-        [Required]
-        public int Quantity { get; set; }
-    
+        public int IdCategories { get; set; }
+        public ProductDB? Product { get; set; } = null!;
+        public CategorieDB? Categorie { get; set; } = null!;
     }
 }
+
