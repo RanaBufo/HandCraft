@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HandCraft.DataBase
 {
-    public class RolesDB
+    public class RoleDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

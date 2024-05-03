@@ -16,5 +16,6 @@ namespace HandCraft.DataBase
         public string Phone { get; set; }
         [Required]
         public string Password { get; set; }
+        public UserDB? User { get; set; } = null;
     }
 }

@@ -19,5 +19,7 @@ namespace HandCraft.DataBase
         public double Price { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public UserDB? User { get; set; } = null!;
+        public ProductDB? Product { get; set; } = null;
     }
 }

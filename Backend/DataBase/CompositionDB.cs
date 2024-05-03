@@ -11,6 +11,6 @@ namespace HandCrafter.DataBase
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<ProductCompositionDB> ProductConposition {  get; set; } = new List<ProductCompositionDB>();
+        public ICollection<ProductCompositionDB> ProductComposition {  get; set; } = new List<ProductCompositionDB>();
     }
 }

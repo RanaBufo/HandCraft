@@ -13,6 +13,6 @@ namespace HandCraft.DataBase
         [Required]
         public int IdRole { get; set; }
         public UserDB? User { get; set; } = null!;
-        public RolesDB? Role { get; set; } = null!;
+        public RoleDB? Role { get; set; } = null!;
     }
 }
