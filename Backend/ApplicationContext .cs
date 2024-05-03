@@ -7,7 +7,7 @@ namespace HandCrafter
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<AdrdressDB> Addesses { get; set; }
+        public DbSet<AddressDB> Addesses { get; set; }
         public DbSet<RoleDB> Roles { get; set; }
         public DbSet<UserRoleDB> UserRoles { get; set; }
         public DbSet<UserDB> Users { get; set; }
