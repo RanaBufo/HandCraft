@@ -13,9 +13,9 @@ namespace HandCraft.DataBase
         [Required]
         public int IdProduct { get; set; }
         [Required]
-        public int IdCategories { get; set; }
+        public int IdCategory { get; set; }
         public ProductDB? Product { get; set; } = null!;
-        public CategorieDB? Categorie { get; set; } = null!;
+        public CategoryDB? Category { get; set; } = null!;
     }
 }
 
