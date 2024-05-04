@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
-    public class RolesDB
+    public class RoleDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

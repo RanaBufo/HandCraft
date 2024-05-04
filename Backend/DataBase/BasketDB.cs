@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class BasketDB
     {
@@ -19,5 +19,7 @@ namespace HandCraft.DataBase
         public double Price { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public UserDB? User { get; set; } = null!;
+        public ProductDB? Product { get; set; } = null;
     }
 }

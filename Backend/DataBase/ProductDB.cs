@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class ProductDB
     {
@@ -19,7 +19,7 @@ namespace HandCraft.DataBase
         public double Discount { get; set; }
         [Required]
         public int Quantity { get; set; }
-        public ICollection<ProductCompositionDB> Product_Composition {  get; set; } = new List<ProductCompositionDB>();
+        public ICollection<ProductCompositionDB> ProductComposition {  get; set; } = new List<ProductCompositionDB>();
         public ICollection<ProductColorDB> ProductColor {  get; set; } =   new List<ProductColorDB>();
         public ICollection<ProductCategoryDB> ProductCategory { get; set; } = new List<ProductCategoryDB>();
         public ICollection<BasketDB> Basket { get; set; } = new List<BasketDB>();

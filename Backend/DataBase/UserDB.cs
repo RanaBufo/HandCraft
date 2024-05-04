@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class UserDB
     {
@@ -17,5 +17,9 @@ namespace HandCraft.DataBase
         [property: Required]
         public DateTime Birthday { get; set; }
         public ICollection<UserRoleDB> UserRoles { get; set; } = new List<UserRoleDB>();
+        public ICollection<BasketDB> Basket { get; set; } = new List<BasketDB>();
+        public ICollection<AddressDB> Address { get; set; } = new List<AddressDB>();
+        public ContactDB? Contact { get; set; } = null;
+
     }
 }

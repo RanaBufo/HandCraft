@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class ContactDB
     {
@@ -16,5 +16,6 @@ namespace HandCraft.DataBase
         public string Phone { get; set; }
         [Required]
         public string Password { get; set; }
+        public UserDB? User { get; set; } = null;
     }
 }

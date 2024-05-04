@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
-    public class AdrdressDB
+    public class AddressDB
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,5 +25,6 @@ namespace HandCraft.DataBase
         public string Room { get; set; }
         [Required]
         public string Intercom { get; set; }
+        public UserDB? User { get; set; } = null;
     }
 }
