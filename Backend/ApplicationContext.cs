@@ -1,5 +1,4 @@
-﻿using HandCraft.DataBase;
-using HandCrafter.DataBase;
+﻿using HandCrafter.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using HandCrafter.DataBase;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class ProductCompositionDB
     {

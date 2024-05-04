@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace HandCraft.DataBase
+namespace HandCrafter.DataBase
 {
     public class BasketDB
     {
