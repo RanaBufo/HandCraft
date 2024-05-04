@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Services
 builder.Services.AddSingleton<ValidService>();
 builder.Services.AddScoped<RoleService>();
+builder.Services.AddScoped<ColorService>();
 
 //BD
 builder.Services.AddDbContext<ApplicationContext>(options =>
