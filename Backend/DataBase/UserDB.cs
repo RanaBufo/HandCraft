@@ -14,12 +14,13 @@ namespace HandCrafter.DataBase
         public string LastName { get; set; }
         public string? Patronymic { get; set; }
         public string? Description { get; set; }
+        public string? ImgName { get; set; }
         [property: Required]
-        public DateTime Birthday { get; set; }
+        public DateOnly Birthday { get; set; }
         public ICollection<UserRoleDB> UserRoles { get; set; } = new List<UserRoleDB>();
         public ICollection<BasketDB> Basket { get; set; } = new List<BasketDB>();
         public ICollection<AddressDB> Address { get; set; } = new List<AddressDB>();
-        public ContactDB? Contact { get; set; } = null;
+        public ContactDB? Contact { get; set; }
 
     }
 }
