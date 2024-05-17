@@ -1,5 +1,5 @@
 import Header from "./components/header/header.jsx";
-import Main from "./components/main/main.jsx";
+import MainMenu from "./components/MainMenu/mainMenu.jsx";
 import './style/common.css';
 //создание функции с названием App()
 function App() { 
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
     <Header />
-    <Main />
+    <MainMenu />
     </>
   );
 }

@@ -9,13 +9,13 @@ function Header() {
             <div className='h-container'>
                 <div className='header_row'>
                 <div >
-                    <img src={magnifier} className='search-img'></img>
+                    <img src={magnifier} className='search-img'/>
                     <input className='search'></input>
                 </div>
                 <div className='menu'>
                     <img src={userIcon} className='icon-user' />
-                    <img src={basket} className='icon-header'></img>
-                    <img src={settings} className='icon-header'></img>
+                    <img src={basket} className='icon-header'/>
+                    <img src={settings} className='icon-header'/>
                 </div>
                 
                 
