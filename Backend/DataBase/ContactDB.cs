@@ -11,11 +11,14 @@ namespace HandCrafter.DataBase
         [Required]
         public int IdUser { get; set; }
         [Required]
+        public int IdRole { get; set; }
+        [Required]
         public string Email { get; set; }
         [Required]
         public string Phone { get; set; }
         [Required]
         public string Password { get; set; }
-        public UserDB? User { get; set; } = null;
+        public UserDB? User { get; set; }
+        public RoleDB? Role { get; set; }
     }
 }

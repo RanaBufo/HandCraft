@@ -3,6 +3,8 @@ using HandCrafter.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace HandCrafter.Controllers
 {
     [Route("[controller]")]
@@ -28,7 +30,8 @@ namespace HandCrafter.Controllers
                 {
                     Email = newUser.Contact.Email,
                     Password = newUser.Contact.Password,
-                    Phone = newUser.Contact.Phone
+                    Phone = newUser.Contact.Phone,
+                    IdRole = newUser.Contact.IdRole
                 }
             };
             _db.Users.Add(user);
@@ -40,7 +43,8 @@ namespace HandCrafter.Controllers
         [HttpGet("UsersGet")]
         public async Task<IResult> UsersGet()
         {
-            var users = await _db.Users.Join(_db.Contacts,
+            var users = await _db.Users
+                .Join(_db.Contacts,
                 u => u.Id,
                 c => c.IdUser,
                 (u, c) => new
