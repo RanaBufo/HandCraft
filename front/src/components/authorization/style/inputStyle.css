@@ -1,0 +1,88 @@
+.input-block {
+  display: block;
+}
+input {
+  display: block !important;
+  font-size: 12pt;
+  padding: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  border-radius: 10px;
+  background: rgb(238, 144, 134, 30%);
+  color: #faeddb;
+}
+
+input:hover,
+input:focus {
+  border: none !important;
+  outline: none;
+  background: rgb(238, 144, 134, 45%);
+}
+
+.in-block {
+  width: 500px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 223, 45%) 0%,
+    rgb(255, 229, 204, 45%) 100%
+  );
+  padding: 30px;
+  display: flex; /* Добавьте это */
+  flex-direction: column; /* Расположите элементы вертикально */
+  align-items: center; /* Центрируйте элементы по горизонтали */
+  border-radius: 20px;
+  font-size: 12pt;
+  color: #c9454b;
+}
+.input-group {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.block {
+  width: 700px;
+}
+h1 {
+  font-size: 20pt;
+  font-weight: bold;
+}
+button {
+  font-size: 12pt;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border-color: rgb(238, 144, 134, 85%);
+  border-width: 3px;
+  background: transparent;
+  border-style: solid;
+  color: rgb(238, 144, 134, 85%);
+  font-weight: bold;
+}
+button:hover {
+  background: rgb(238, 144, 134, 85%);
+  color: #faeddb;
+  border: none;
+  padding: 18px;
+}
+
+.rightSH {
+  width: 500px;
+  position: absolute;
+  right: 0;
+  opacity: 0.4;
+  background: transparent;
+}
+.leftSH {
+  width: 500px;
+  position: absolute;
+  opacity: 0.4;
+  left: 0;
+  background-image: transparent;
+}

@@ -22,10 +22,12 @@ header{
 
 .search{
     background: white !important;
-    width: 500px;
+    width: 400px !important;
     height: 40px;
     border-radius: 45px;
     border: 0cap;
+    padding: 2px;
+    padding-left: 60px;
     
 }
 

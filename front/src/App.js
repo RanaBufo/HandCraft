@@ -1,14 +1,27 @@
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/header/header.jsx";
-import Main from "./components/main/main.jsx";
+import UserPage from "./components/userPage/userPage.jsx";
+import Registration from "./components/authorization/registration.jsx";
+import Login from './components/authorization/login.jsx';
+import AllProduct from './components/poruct/allProduct.jsx';
+import OneProduct from './components/poruct/oneProduct.jsx';
 import './style/common.css';
+import './components/userPage/style/main.css'
+import './components/poruct/style/allProduct.css'
 //создание функции с названием App()
 function App() { 
-  //jsx
-  //у всех тэегов должен быть родитель, поэтому используем пустой тег - ReactFragment, в качетсве родителя
+ 
   return (
     <>
-    <Header />
-    <Main />
+  
+  <Header/>
+    <Routes>
+      <Route path = "/user/:id" element={<UserPage/>} />
+      <Route path = "/registration" element={<Registration/>} />
+      <Route path = "/Login" element = {<Login />} />
+      <Route path = "/" element={<AllProduct/>}/>
+      <Route path = "/:id" element = {<OneProduct />} />
+    </Routes>
     </>
   );
 }

@@ -1,5 +1,6 @@
 ﻿using HandCrafter.DataBase;
 using HandCrafter.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +32,7 @@ namespace HandCrafter.Controllers
                     Email = newUser.Contact.Email,
                     Password = newUser.Contact.Password,
                     Phone = newUser.Contact.Phone,
-                    IdRole = newUser.Contact.IdRole
+                    IdRole = newUser.Contact.IdRole 
                 }
             };
             _db.Users.Add(user);
@@ -66,6 +67,7 @@ namespace HandCrafter.Controllers
             return Results.Json(users);
         }
 
+        [Authorize]
         [HttpGet("OneUserGet")]
         public async Task<IResult> OneUserGet(int id)
         {
