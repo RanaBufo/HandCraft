@@ -10,5 +10,6 @@ namespace HandCrafter.Model
         public string? Description { get; set; }
         public DateOnly Birhday { get; set; }
         public ContactRequestModel Contact { get; set; }
+        
     }
 }

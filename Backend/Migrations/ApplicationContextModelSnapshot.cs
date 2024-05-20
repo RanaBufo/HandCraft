@@ -166,6 +166,9 @@ namespace HandCrafter.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("IdRole")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
@@ -178,6 +181,8 @@ namespace HandCrafter.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdRole");
 
                     b.HasIndex("IdUser")
                         .IsUnique();
@@ -333,29 +338,6 @@ namespace HandCrafter.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("HandCrafter.DataBase.UserRoleDB", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("IdRole")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdRole");
-
-                    b.HasIndex("IdUser");
-
-                    b.ToTable("UserRoles");
-                });
-
             modelBuilder.Entity("HandCrafter.DataBase.AddressDB", b =>
                 {
                     b.HasOne("HandCrafter.DataBase.UserDB", "User")
@@ -388,11 +370,19 @@ namespace HandCrafter.Migrations
 
             modelBuilder.Entity("HandCrafter.DataBase.ContactDB", b =>
                 {
+                    b.HasOne("HandCrafter.DataBase.RoleDB", "Role")
+                        .WithMany("Contact")
+                        .HasForeignKey("IdRole")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HandCrafter.DataBase.UserDB", "User")
                         .WithOne("Contact")
                         .HasForeignKey("HandCrafter.DataBase.ContactDB", "IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Role");
 
                     b.Navigation("User");
                 });
@@ -454,25 +444,6 @@ namespace HandCrafter.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("HandCrafter.DataBase.UserRoleDB", b =>
-                {
-                    b.HasOne("HandCrafter.DataBase.RoleDB", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("IdRole")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HandCrafter.DataBase.UserDB", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("HandCrafter.DataBase.CategoryDB", b =>
                 {
                     b.Navigation("ProductCategory");
@@ -501,7 +472,7 @@ namespace HandCrafter.Migrations
 
             modelBuilder.Entity("HandCrafter.DataBase.RoleDB", b =>
                 {
-                    b.Navigation("UserRoles");
+                    b.Navigation("Contact");
                 });
 
             modelBuilder.Entity("HandCrafter.DataBase.UserDB", b =>
@@ -511,8 +482,6 @@ namespace HandCrafter.Migrations
                     b.Navigation("Basket");
 
                     b.Navigation("Contact");
-
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

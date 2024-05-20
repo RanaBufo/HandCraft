@@ -1,6 +1,7 @@
 ﻿using HandCrafter.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data;
 
 namespace HandCrafter
 {
@@ -8,7 +9,6 @@ namespace HandCrafter
     {
         public DbSet<AddressDB> Addesses { get; set; }
         public DbSet<RoleDB> Roles { get; set; }
-        public DbSet<UserRoleDB> UserRoles { get; set; }
         public DbSet<UserDB> Users { get; set; }
         public DbSet<ContactDB> Contacts { get; set; }
         public DbSet<BasketDB> Baskets { get; set; }
@@ -68,16 +68,12 @@ namespace HandCrafter
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.IdUser).IsRequired();
 
-            //Связь между юзером и ролями, через смежную таблицу
             modelBuilder.Entity<RoleDB>()
-                .HasMany(e => e.UserRoles)
-                .WithOne(e => e.Role)
-                .HasForeignKey(e => e.IdRole).IsRequired();
+                .HasMany(e => e.Contact) 
+                .WithOne(e => e.Role) 
+                .HasForeignKey(e => e.IdRole)
+                .IsRequired();
 
-            modelBuilder.Entity<UserDB>()
-                .HasMany(e => e.UserRoles)
-                .WithOne(e => e.User)
-                .HasForeignKey(e => e.IdUser).IsRequired();
 
             //Связь между юзером и контактами, 1 к 1
             modelBuilder.Entity<UserDB>()

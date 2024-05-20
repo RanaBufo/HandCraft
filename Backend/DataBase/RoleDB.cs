@@ -10,6 +10,6 @@ namespace HandCrafter.DataBase
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<UserRoleDB> UserRoles { get; set; } = new List<UserRoleDB>();
+        public ICollection<ContactDB> Contact { get; set; } = new List<ContactDB>();
     }
 }
