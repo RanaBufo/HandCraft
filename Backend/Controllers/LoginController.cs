@@ -1,4 +1,5 @@
 ﻿using HandCrafter.Model;
+using HandCrafter.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,20 +9,30 @@ namespace HandCrafter.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly ApplicationContext _db;
+        private readonly RegistrationService _registrationService;
+        private readonly UserService _userService;
+        private readonly TokenService _tokenService;
 
-        public LoginController(ApplicationContext db) => (_db) = (db);
+        public LoginController(RegistrationService registrationService, UserService userService, TokenService tokenService) => (_registrationService, _userService, _tokenService) = (registrationService, userService, tokenService);
 
         [HttpPost("LogIn")]
-        public async Task<IResult> LogIn(ContactRequestModel contact)
+        public IResult LogIn(ContactRequestModel contact)
         {
-            var users = await _db.Contacts
-                .Where(c => c.Password == contact.Password)
-                .Where(c => contact.Email == c.Email || contact.Phone == c.Phone)
-                .ToListAsync();
-            int id = users[0].IdUser;
-            return Results.Json(id);
+            int id = _registrationService.LoginService(contact);
+            string token = _tokenService.GetRefreshTokenService(120, id);
+            return Results.Json(token);
         }
+        
+        [HttpPost("Registration")]
+        public string Registration(UseresRequestModel newUser)
+        {
+            _userService.AddUserService(newUser);
+            int id = _registrationService.RegistrationUserService(newUser.Contact);
+            string token  = _tokenService.GetRefreshTokenService(120, id);
+            return token;
+        }
+
+        
 
 
     }

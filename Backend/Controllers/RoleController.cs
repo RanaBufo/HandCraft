@@ -35,13 +35,13 @@ namespace HandCrafter.Controllers
         }
 
         [HttpDelete("DeleteRole")]
-        public async Task<IActionResult> DeleteRole(GetIdModel roleId)
+        public IActionResult DeleteRole(GetIdModel roleId)
         {
             if (!_validService.ValidId(roleId.Id))
             {
                 return BadRequest();
             }
-            await _roleService.DeleteRoleService(roleId.Id);
+            _roleService.DeleteRoleService(roleId.Id);
             return Ok();
         }
     }

@@ -2,6 +2,6 @@
 {
     public class GetIdModel
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
     }
 }

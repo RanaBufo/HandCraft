@@ -12,10 +12,8 @@ function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [doublePassword, setDoublePassword] = useState("");
-  let id;
   const navigate = useNavigate();
   function saveToken(token) {
-
     sessionStorage.setItem("refreshToken", JSON.stringify(token));
   }
   const registrationUser = () => {
@@ -41,7 +39,7 @@ function Registration() {
           IdRole: 2,
         },
       };
-      let url = "https://localhost:7073/user/UserPost";
+      let url = "https://localhost:7073/login/Registration";
 
       let headers = {
         Accept: "application/json, text/plain, */*",
@@ -59,67 +57,15 @@ function Registration() {
               throw new Error(text);
             });
           }
+          return response.text(); // Возвращаем строковый ответ
         })
-        .then((data) => {
-          // После успешного выполнения первого запроса, выполняем второй
-          body = {
-            Email: email,
-            Phone: number,
-            Password: password,
-            IdRole: 2,
-          };
-          url = "https://localhost:7073/Login/LogIn";
-
-          return fetch(url, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-              Accept: "application/json",
-            },
-          });
-        })
-        .then((response) => {
-          if (!response.ok) {
-            return response.text().then((text) => {
-              throw new Error(text);
-            });
-          }
-
-          // Обработка тела ответа
-          return response
-            .json()
-            .then((data) => ({ data }))
-            .catch(() => {
-              // Если ответ не является JSON, возвращаем пустой объект и userId
-              return { data: {} };
-            });
-        })
-        .then((data) => {
-          id = data.data;
-          return id;
-        })
-        .then((myId) => {
-          body = {};
-          const url = `https://localhost:7073/api/Registration/GetRefreshToken?minutes=300&id=${id}`;
-
-          return fetch(url, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-              Accept: "application/json",
-            },
-          }).then((response) => response.text().then((data) => ({ data, myId })));
-        })
-        .then((data) => {
-          saveToken(data.data);
-          navigate("/user/" + data.myId);
+        .then((token) => {
+          saveToken(token);
+          navigate("/user");
         })
         .catch((error) => {
           console.error("Ошибка:", error);
         });
-
     }
   };
   return (
@@ -138,19 +84,19 @@ function Registration() {
         </div>
 
         <div className="input-group">
-          <label>Фамилия</label>
-          <input
-            type="text"
-            value={surname}
-            onChange={(event) => setSurname(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
           <label>Отчество</label>
           <input
             type="text"
             value={patronymic}
             onChange={(event) => setPatronymic(event.target.value)}
+          ></input>
+        </div>
+        <div className="input-group">
+          <label>Фамилия</label>
+          <input
+            type="text"
+            value={surname}
+            onChange={(event) => setSurname(event.target.value)}
           ></input>
         </div>
         <div className="input-group">
