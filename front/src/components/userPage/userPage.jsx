@@ -14,7 +14,7 @@ function UserPage() {
     const fetchData = async () => {
       try {
         const body = {};
-        const url = `https://localhost:7073/api/Registration/GetAccessToken?minutes=300`;
+        const url = `https://localhost:7073/api/Registration/GetAccessToken?minutes=2`;
         const headers = {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json;charset=utf-8",
