@@ -14,6 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ValidService>();
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<ColorService>();
+builder.Services.AddScoped<RegistrationService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ProductService>();
 
 //BD
 builder.Services.AddDbContext<ApplicationContext>(options =>

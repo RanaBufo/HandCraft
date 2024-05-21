@@ -1,8 +1,10 @@
 ﻿using HandCrafter.DataBase;
 using HandCrafter.Model;
+using HandCrafter.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
 
 
 
@@ -12,85 +14,46 @@ namespace HandCrafter.Controllers
     [ApiController]
     public class UserController : Controller
     {
-        private readonly ApplicationContext _db;
+        private readonly UserService _userService;
 
-        public UserController(ApplicationContext db) => (_db) = (db);
+        public UserController(UserService userService) => (_userService) = (userService);
 
 
         [HttpPost("UserPost")]
-        public async Task<IActionResult> UserPost(UseresRequestModel newUser)
+        public IActionResult UserPost(UseresRequestModel newUser)
         {
-            var user = new UserDB
-            {
-                FirstName = newUser.FirstName,
-                LastName = newUser.LastName,
-                Patronymic = newUser.Patronymic,
-                Description = newUser.Description,
-                Birthday = newUser.Birhday,
-                Contact = new ContactDB
-                {
-                    Email = newUser.Contact.Email,
-                    Password = newUser.Contact.Password,
-                    Phone = newUser.Contact.Phone,
-                    IdRole = newUser.Contact.IdRole 
-                }
-            };
-            _db.Users.Add(user);
-            await _db.SaveChangesAsync();
-
+           _userService.AddUserService(newUser);
+        
             return Ok();
         }
 
         [HttpGet("UsersGet")]
-        public async Task<IResult> UsersGet()
+        public IResult UsersGet()
         {
-            var users = await _db.Users
-                .Join(_db.Contacts,
-                u => u.Id,
-                c => c.IdUser,
-                (u, c) => new
-                {
-                    Id = u.Id,
-                    Name = u.FirstName,
-                    LastName = u.LastName,
-                    Patronymic = u.Patronymic,
-                    Description = u.Description,
-                    Birthday = u.Birthday,
-                    Contact = new
-                    {
-                        Email = c.Email,
-                        Password = c.Password,
-                        Phone = c.Phone
-                    }
-                }).ToListAsync();
+            var users = _userService.GetUsersService();
 
             return Results.Json(users);
         }
 
         [Authorize]
         [HttpGet("OneUserGet")]
-        public async Task<IResult> OneUserGet(int id)
+        public IResult OneUserGet()
         {
-            var user = await  _db.Users
-                .Join(_db.Contacts,
-                u => u.Id,
-                c => c.IdUser,
-                (u, c) => new
-                {
-                    Id = c.IdUser,
-                    Name = u.FirstName,
-                    LastName = u.LastName,
-                    Patronymic = u.Patronymic,
-                    Description = u.Description,
-                    Birthday = u.Birthday,
-                    Contact = new
-                    {
-                        Email = c.Email,
-                        Password = c.Password,
-                        Phone = c.Phone
-                    }
-                })
-                .FirstOrDefaultAsync(j => j.Id == id);
+            string token = HttpContext.Request.Headers["Authorization"];
+            // Удаляем "Bearer " из строки токена
+            token = token.Substring("Bearer ".Length).Trim();
+
+            // Создаем объект JwtSecurityTokenHandler
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            // Декодируем токен
+            var decodedToken = tokenHandler.ReadJwtToken(token);
+
+            // Получаем имя из токена
+            var idClaim = decodedToken.Claims.FirstOrDefault(c => c.Type == "Id");
+            int id;
+            int.TryParse(idClaim.Value, out id);
+            var user = _userService.GetUserService(id);
             return Results.Json(user);
         }
     }

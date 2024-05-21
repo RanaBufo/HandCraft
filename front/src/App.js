@@ -16,7 +16,7 @@ function App() {
   
   <Header/>
     <Routes>
-      <Route path = "/user/:id" element={<UserPage/>} />
+      <Route path = "/user" element={<UserPage/>} />
       <Route path = "/registration" element={<Registration/>} />
       <Route path = "/Login" element = {<Login />} />
       <Route path = "/" element={<AllProduct/>}/>
