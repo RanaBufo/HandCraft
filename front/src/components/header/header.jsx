@@ -20,7 +20,7 @@ function Header() {
     }
     return (
         <header>
-            <div className= 'headerIconPosition'>
+            <div className = 'headerIcon'>
                 <img src ={handCraftaIcon}></img>
             </div>
             <div className='h-container' style={{ background: headerBackground }}>

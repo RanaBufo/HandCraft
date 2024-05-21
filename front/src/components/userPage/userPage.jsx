@@ -75,7 +75,7 @@ function UserPage() {
       </div>
       <div className="userCard">
         <div className="centerElement">
-          <div className="circle">
+          <div className="ProductTypeCircle">
             <div className="imgCircle">
               <img
                 src={`https://localhost:7073/img/${imgData}`}

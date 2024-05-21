@@ -52,8 +52,11 @@ header{
     right: 10px;
 }
 
-.headerIconPosition
+.headerIcon
 {
     position: absolute;
-    top: 0;
+    top: -40px;
+    left: -15px;
+    width: 400px;
+    height: 360px;
 }

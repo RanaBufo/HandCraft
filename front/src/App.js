@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/header/header.jsx";
+import Footer from "./components/footer/footer.jsx";
 import UserPage from "./components/userPage/userPage.jsx";
 import Registration from "./components/authorization/registration.jsx";
 import Login from './components/authorization/login.jsx';
@@ -22,6 +23,7 @@ function App() {
       <Route path = "/" element={<AllProduct/>}/>
       <Route path = "/:id" element = {<OneProduct />} />
     </Routes>
+    <Footer/>
     </>
   );
 }

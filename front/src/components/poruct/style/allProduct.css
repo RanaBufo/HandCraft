@@ -1,40 +1,45 @@
 .cardProduct{
-    width: 500px;
-    background: #ffffff00;
+    width: 450px;
+    border-radius: 10%;
+    background: #fff1e1;
     color: #3B1E0E;
     font-size: 20pt;
-    padding: 20px;
-    margin-top: 10px !important;    
+    padding: 10px;
+    margin-top: 30px !important;    
     margin-left: 10px !important;
-    max-height: 1300px;
+    height: 900px;
 }
 
 .name{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 25pt;
+    height: 150px;
 }
 
 .imgProduct{
-    border-radius: 30%;
-    width: 400px;
-    height: 450px;
-    max-height: 500px;
-    margin-left: 90px;
+    border-radius: 15%;
+    width: 450px;
+    height: 500px;
+    align-items: center;
 }
 .row{
     display: flex;
     flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
-    margin-left: 75px;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 100px;
-
-        align-items: center;
+    justify-content: center;
+    align-items: center;
         
 }
 
 .descriptionStyle{
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-bottom: 5px;
 }
 
 
@@ -62,4 +67,15 @@
 {
     height: 100px;
     width: 100px;
+}
+
+.buyButton
+{
+    margin-top: 10px !important;
+    margin-left: 45% !important;
+}
+
+.productText
+{
+height: 30px;
 }

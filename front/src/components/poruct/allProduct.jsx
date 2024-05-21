@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import YarnIcon from "../../img/YarnIcon.png";
 import CeramicIcon from "../../img/CeramicIcon.png";
 import NeedleIcon from "../../img/NeedleIcon.png";
+import ProductBackground from "../../img/ProductBackground.png";
+
 
 function Product() {
     const [items, setItems] = useState([]);
@@ -24,6 +26,7 @@ function Product() {
 
         loading ? (
             <>
+                
                 <div className="rowInfo">
                     <div className="typeIconCircle">
                             <img
@@ -59,12 +62,13 @@ function Product() {
                     <img src={item.image} className="imgProduct" alt={item.title} />
                    
                     <p className="name">{item.title}</p>
-                    <p className="descriptionStyle">{item.description}</p>
-                    <p>${item.price}</p>
-                    <button onClick={() => handleInfoClick(item.id)}>Info</button>
+                    <div className="productText"><p className="descriptionStyle">{item.description}</p></div>
+                    <div className="productText"><p className="descriptionStyle">${item.price}</p></div>
+                    <div className="productText"><button className="buyButton" onClick={() => handleInfoClick(item.id)}>Buy</button></div>
                 </div>
             ))}
         </div>
+                
             </>
         ) : (
             <p>Loading...</p>
