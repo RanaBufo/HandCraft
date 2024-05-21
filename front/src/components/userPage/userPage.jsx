@@ -4,8 +4,6 @@ import backgroung from "../../img/background.jpg";
 function UserPage() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const params = useParams();
-  const prodId = params.id;
   let refreshToken = sessionStorage.getItem("refreshToken");
   refreshToken = refreshToken.substring(1);
   refreshToken = refreshToken.substring(0, refreshToken.length - 1);
@@ -66,7 +64,7 @@ function UserPage() {
     imgData = "cat.png";
   }
   console.log(items);
-  return loading ? (
+  return loading ? ( 
     <main>
       <div className="cardBackground">
         <img

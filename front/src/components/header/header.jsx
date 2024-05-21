@@ -4,6 +4,7 @@ import magnifier from './../../img/magnifier.png';
 import userIcon from './../../img/Ellipse 6userIcon.png';
 import basket from './../../img/Vectorbasket.svg';
 import settings from './../../img/Vectorsettings.svg';
+import handCraftaIcon from './../../img/HandCraftaIcon.png';
 
 function Header() {
     let headerBackground = '';
@@ -19,6 +20,9 @@ function Header() {
     }
     return (
         <header>
+            <div className= 'headerIconPosition'>
+                <img src ={handCraftaIcon}></img>
+            </div>
             <div className='h-container' style={{ background: headerBackground }}>
                 <div className='header_row' >
                     <div>

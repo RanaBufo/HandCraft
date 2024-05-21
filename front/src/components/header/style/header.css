@@ -51,3 +51,9 @@ header{
     position: fixed;
     right: 10px;
 }
+
+.headerIconPosition
+{
+    position: absolute;
+    top: 0;
+}
