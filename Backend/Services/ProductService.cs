@@ -1,4 +1,5 @@
 ﻿using HandCrafter.DataBase;
+using HandCrafter.Migrations;
 using HandCrafter.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace HandCrafter.Services
             {
                 Name = newProduct?.Name ?? "Новый продукт",
                 Description = newProduct.Description,
+                ImgName = newProduct.ImgName,
                 Price = newProduct?.Price ?? 5000,
                 Discount = newProduct?.Discount ?? 0,
                 Quantity = newProduct?.Quantity ?? 0
@@ -103,6 +105,7 @@ namespace HandCrafter.Services
                    Id = group.Key,
                    Name = group.Select(pc => pc.Name).FirstOrDefault(),
                    Description = group.Select(pc => pc.Description).FirstOrDefault(),
+                   ImgName = group.Select(pc => pc.ImgName).FirstOrDefault(),
                    Price = group.Select(pc => pc.Price).FirstOrDefault(),
                    Discount = group.Select(pc => pc.Discount).FirstOrDefault(),
                    Quantity = group.Select(pc => pc.Quantity).FirstOrDefault(),
@@ -148,6 +151,7 @@ namespace HandCrafter.Services
                    Name = group.Select(pc => pc.Name).FirstOrDefault(),
                    Description = group.Select(pc => pc.Description).FirstOrDefault(),
                    Price = group.Select(pc => pc.Price).FirstOrDefault(),
+                   ImgName = group.Select(pc => pc.ImgName).FirstOrDefault(),
                    Discount = group.Select(pc => pc.Discount).FirstOrDefault(),
                    Quantity = group.Select(pc => pc.Quantity).FirstOrDefault(),
                    ProductColor = group.SelectMany(pc => pc.ProductColor)
@@ -190,6 +194,7 @@ namespace HandCrafter.Services
                    Name = group.Select(pc => pc.Name).FirstOrDefault(),
                    Description = group.Select(pc => pc.Description).FirstOrDefault(),
                    Price = group.Select(pc => pc.Price).FirstOrDefault(),
+                   ImgName = group.Select(pc => pc.ImgName).FirstOrDefault(),
                    Discount = group.Select(pc => pc.Discount).FirstOrDefault(),
                    Quantity = group.Select(pc => pc.Quantity).FirstOrDefault(),
                    ProductColor = group.SelectMany(pc => pc.ProductColor)
