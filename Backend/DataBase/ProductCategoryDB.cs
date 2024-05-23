@@ -14,8 +14,8 @@ namespace HandCrafter.DataBase
         public int IdProduct { get; set; }
         [Required]
         public int IdCategory { get; set; }
-        public ProductDB? Product { get; set; } = null!;
-        public CategoryDB? Category { get; set; } = null!;
+        public ProductDB? Product { get; set; } 
+        public CategoryDB? Category { get; set; } 
     }
 }
 

@@ -1,7 +1,13 @@
 .input-block {
   display: block;
+  
+}
+.form{
+  position: relative;
+  top: 100px;
 }
 input {
+  position: static;
   display: block !important;
   font-size: 12pt;
   padding: 9px;
@@ -12,7 +18,6 @@ input {
   background: rgb(238, 144, 134, 30%);
   color: #faeddb;
 }
-
 input:hover,
 input:focus {
   border: none !important;
@@ -85,4 +90,11 @@ button:hover {
   opacity: 0.4;
   left: 0;
   background-image: transparent;
+}
+
+.errorMassage{
+  margin-bottom: 0px !important;
+  margin-top: 2px;
+  font-size: 10pt;
+
 }

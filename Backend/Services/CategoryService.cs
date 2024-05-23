@@ -20,7 +20,7 @@ namespace HandCrafter.Services
         {
             var newCategory = new CategoryDB
             {
-                Name = Name ?? "NewRole"
+                Name = Name ?? "NewCategory"
             };
             _db.Categories.Add(newCategory);
             _db.SaveChanges();

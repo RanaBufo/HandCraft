@@ -14,6 +14,9 @@ namespace HandCrafter.Services
                 .Where(c => c.Password == contact.Password)
                 .Where(c => contact.Email == c.Email || contact.Phone == c.Phone)
                 .ToList();
+            if(users.Count == 0) { 
+                return 0;
+            }
             int id = users[0].IdUser;
             return id;
         }
