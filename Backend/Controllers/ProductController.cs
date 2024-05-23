@@ -11,8 +11,8 @@ namespace HandCrafter.Controllers
         private readonly ProductService _productService;
         public ProductController(ProductService productService) => (_productService) = (productService);
 
-        [HttpPost("ProductRequestModel")]
-        public IActionResult ProductGet(ProductRequestModel newProduct)
+        [HttpPost("ProductPost")]
+        public IActionResult ProductPost(ProductRequestModel newProduct)
         {
             if (newProduct == null)
             {
@@ -22,6 +22,36 @@ namespace HandCrafter.Controllers
             return Ok();
         }
 
-        
+        [HttpGet("ProductsGet")]
+        public IResult ProductsGet()
+        {
+            var allProducts = _productService.getProductsService();
+            return Results.Json(allProducts);
+        }
+
+
+        [HttpGet("ProductByIdGet")]
+        public IResult ProductByIdGet(int id)
+        {
+            var Product = _productService.getProductByIdService(id);
+            if (Product == null)
+            {
+                return Results.NoContent();
+            }
+            return Results.Json(Product);
+        }
+
+        [HttpGet("ProductByCategoryGet")]
+        public IResult ProductByCategoryGet(int id)
+        {
+            var Product = _productService.getProductsByCategoriesService(id);
+            if (Product == null)
+            {
+                return Results.NoContent();
+            }
+            return Results.Json(Product);
+        }
+
+
     }
 }

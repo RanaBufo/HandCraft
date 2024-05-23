@@ -5,27 +5,29 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");  
-  const navigate = useNavigate();  
+  const [password, setPassword] = useState("");
+  const [errorLog, setErrorLog] = useState(false);
+  const navigate = useNavigate();
   function saveToken(token) {
     sessionStorage.setItem("refreshToken", token);
   }
   const loginUser = () => {
+    setErrorLog(false)
     let body = {
       Email: "",
       Phone: login,
       Password: password,
       IdRole: 2,
     };
-  
+
     if (login !== "" && password !== "") {
       let url = "https://localhost:7073/login/LogIn";
-  
+
       let headers = {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json;charset=utf-8",
       };
-  
+
       fetch(url, {
         method: "POST",
         body: JSON.stringify(body),
@@ -41,22 +43,23 @@ function Login() {
         })
         .then((token) => {
           saveToken(token);
-          console.log(token)
+          console.log(token);
           navigate("/user");
         })
         .catch((error) => {
+          setErrorLog(true);
           console.error("Ошибка:", error);
         });
     }
   };
-  
+
   return (
     <>
       <img className="rightSH" src={nodeRight}></img>
       <img className="leftSH" src={nodeLeft}></img>
       <div className="in-block">
         <h1>Вход</h1>
-
+        {errorLog && <p className="errorStyle">Ошибка!!!</p>}
         <div className="input-group">
           <label>Номер телефона/ E-mail</label>
           <input

@@ -1,146 +1,156 @@
 import "./style/inputStyle.css";
 import nodeRight from "../../img/noodle.png";
 import nodeLeft from "../../img/noodle2.png";
+
+import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 function Registration() {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [patronymic, setPatronymic] = useState("");
-  const [dateBurn, setDateBurn] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [doublePassword, setDoublePassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  
   const navigate = useNavigate();
+  
   function saveToken(token) {
     sessionStorage.setItem("refreshToken", JSON.stringify(token));
   }
-  const registrationUser = () => {
-    if (
-      name !== "" &&
-      surname !== "" &&
-      dateBurn !== "" &&
-      number !== "" &&
-      email !== "" &&
-      password !== "" &&
-      doublePassword === password
-    ) {
-      let body = {
-        FirstName: name,
-        LastName: surname,
-        Patronymic: patronymic,
-        Description: null,
-        Birhday: dateBurn,
-        Contact: {
-          Email: email,
-          Phone: number,
-          Password: password,
-          IdRole: 2,
-        },
-      };
-      let url = "https://localhost:7073/login/Registration";
 
-      let headers = {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json;charset=utf-8",
-      };
-
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: headers,
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.text().then((text) => {
-              throw new Error(text);
-            });
-          }
-          return response.text(); // Возвращаем строковый ответ
-        })
-        .then((token) => {
-          saveToken(token);
-          navigate("/user");
-        })
-        .catch((error) => {
-          console.error("Ошибка:", error);
-        });
+  const onSubmit = (data) => {
+    if (data.password !== data.doublePassword) {
+      alert("Пароли не совпадают");
+      return;
     }
+
+    const body = {
+      FirstName: data.name,
+      LastName: data.surname,
+      Patronymic: data.patronymic,
+      Description: null,
+      Birhday: data.dateBurn,
+      Contact: {
+        Email: data.email,
+        Phone: data.number,
+        Password: data.password,
+        IdRole: 2,
+      },
+    };
+
+    const url = "https://localhost:7073/login/Registration";
+
+    const headers = {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json;charset=utf-8",
+    };
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: headers,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+        return response.text();
+      })
+      .then((token) => {
+        saveToken(token);
+        navigate("/user");
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+      });
   };
+
   return (
     <>
+    <div className="block"></div>
       <img className="rightSH" src={nodeRight}></img>
       <img className="leftSH" src={nodeLeft}></img>
-      <div className="in-block">
-        <h1>Регистрация</h1>
-        <div className="input-group">
-          <label>Имя</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          ></input>
-        </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="in-block">
+          <h1>Регистрация</h1>
+          
+          <div className="input-group">
+            <label>Имя</label>
+            <input
+              type="text"
+              {...register('name', { required: "Имя обязательно" })}
+            />
+            {errors.name && <p className="errorMassage">{errors.name.message}</p>}
+          </div>
 
-        <div className="input-group">
-          <label>Отчество</label>
-          <input
-            type="text"
-            value={patronymic}
-            onChange={(event) => setPatronymic(event.target.value)}
-          ></input>
+          <div className="input-group">
+            <label>Отчество</label>
+            <input
+              type="text"
+              {...register('patronymic')}
+            />
+          </div>
+          
+          <div className="input-group">
+            <label>Фамилия</label>
+            <input
+              type="text"
+              {...register('surname', { required: "Фамилия обязательна" })}
+            />
+            {errors.surname && <p className="errorMassage">{errors.surname.message}</p>}
+          </div>
+          
+          <div className="input-group">
+            <label>День рождения</label>
+            <input
+              type="date"
+              {...register('dateBurn', { required: "Дата рождения обязательна" })}
+            />
+            {errors.dateBurn && <p className="errorMassage">{errors.dateBurn.message}</p>}
+          </div>
+          
+          <div className="input-group">
+            <label>Номер телефона</label>
+            <input
+              type="text"
+              {...register('number', { required: "Номер телефона обязателен" })}
+            />
+            {errors.number && <p className="errorMassage">{errors.number.message}</p>}
+          </div>
+          
+          <div className="input-group">
+            <label>E-mail</label>
+            <input
+              type="email"
+              {...register('email', { required: "Email обязателен" })}
+            />
+            {errors.email && <p className="errorMassage">{errors.email.message}</p>}
+          </div>
+          
+          <div className="input-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              {...register('password', { required: "Пароль обязателен" })}
+            />
+            {errors.password && <p className="errorMassage">{errors.password.message}</p>}
+          </div>
+          
+          <div className="input-group">
+            <label>Повторите пароль</label>
+            <input
+              type="password"
+              {...register('doublePassword', { required: "Подтверждение пароля обязательно" })}
+            />
+            {errors.doublePassword && <p className="errorMassage">{errors.doublePassword.message}</p>}
+          </div>
+          
+          <button type="submit">Регистрация</button>
         </div>
-        <div className="input-group">
-          <label>Фамилия</label>
-          <input
-            type="text"
-            value={surname}
-            onChange={(event) => setSurname(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
-          <label>День рождения</label>
-          <input
-            type="date"
-            value={dateBurn}
-            onChange={(event) => setDateBurn(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
-          <label>Номер телефона</label>
-          <input
-            type="text"
-            value={number}
-            onChange={(event) => setNumber(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
-          <label>E-mail</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
-          <label>Пароль</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          ></input>
-        </div>
-        <div className="input-group">
-          <label>Повторите пароль</label>
-          <input
-            type="password"
-            value={doublePassword}
-            onChange={(event) => setDoublePassword(event.target.value)}
-          ></input>
-        </div>
-        <button onClick={registrationUser}>Регистрация</button>
-      </div>
+      </form>
     </>
   );
 }

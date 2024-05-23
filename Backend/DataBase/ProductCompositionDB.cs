@@ -14,8 +14,8 @@ namespace HandCrafter.DataBase
         public int IdProduct { get; set; }
         [Required]
         public int IdComposition { get; set; }
-        public ProductDB? Product { get; set; } = null!;
-        public CompositionDB? Composition { get; set; } = null!;
+        public ProductDB? Product { get; set; }
+        public CompositionDB? Composition { get; set; }
     }
 }
 
