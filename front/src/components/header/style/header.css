@@ -1,3 +1,59 @@
+header {
+    margin: 100px auto;
+}
+
+.h-container {
+    width: 900px;
+    background: rgb(255, 193, 189);
+    background: linear-gradient(90deg, rgba(255, 193, 189, 1) 0%, rgba(255, 128, 127, 1) 100%);
+    border-radius: 45px 0px 0px 45px;
+    padding-left: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+}
+
+.header_row {
+    display: flex;
+    column-gap: 30px;
+}
+
+.search {
+    background: white !important;
+    width: 400px !important;
+    height: 40px;
+    border-radius: 45px;
+    border: 0cap;
+    padding: 2px;
+    padding-left: 60px;
+
+}
+
+.search-img {
+    position: fixed !important;
+    right: 860px !important;
+    margin-top: 7px;
+}
+
+.icon-header {
+    width: 20px;
+    margin-right: 40px;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.icon-user {
+    width: 45px;
+    margin-right: 40px;
+}
+
+.menu {
+    position: fixed;
+    right: 10px;
+}
+
 header{
     margin: 100px auto;
 }
@@ -50,10 +106,7 @@ header{
 .menu{
     position: fixed;
     right: 10px;
-}
-
-.headerIcon
-{
+}.headerIcon {
     position: absolute;
     top: -40px;
     left: -15px;

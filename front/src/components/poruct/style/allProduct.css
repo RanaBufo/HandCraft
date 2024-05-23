@@ -1,20 +1,42 @@
 .cardProduct{
     width: 450px;
     border-radius: 10%;
-    background: #fff1e1;
+    background: #eae6e2;
     color: #3B1E0E;
     font-size: 20pt;
     padding: 10px;
     margin-top: 30px !important;    
-    margin-left: 10px !important;
+    margin-left: 30px !important;
     height: 900px;
+    
 }
 
+.cardOfOneProduct {
+    
+    position: relative;
+    border-radius: 5%;
+    background: #fff5ea00;
+    color: #000000;
+    font-size: 24pt;
+    padding: 10px;
+    margin-top: 200px !important;
+    height: 900px;
+    
+}
 .name{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 25pt;
+    font-size: 36pt;
     height: 150px;
+}
+
+.productName {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 36pt;
+    height: 150px;
+    width: 100%;
+    text-align: right;
 }
 
 .imgProduct{
@@ -23,6 +45,16 @@
     height: 500px;
     align-items: center;
 }
+
+.imgOfOneProduct {
+
+    border-radius: 15%;
+    width: 700px;
+    height: 700px;
+    float: left;
+    margin-left: 200px;
+}
+
 .row{
     display: flex;
     flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
@@ -42,10 +74,17 @@
     padding-bottom: 5px;
 }
 
-
+.priceStyle {
+    margin-top: 10px;
+    font-size: 36px;
+    font-weight: bold;
+}
 
 .returnButton{
     width: 100px;
+    float: right;
+    align-items: center;
+    
 }
 
 .typeIconCircle {
@@ -72,10 +111,30 @@
 .buyButton
 {
     margin-top: 10px !important;
-    margin-left: 45% !important;
+    
 }
 
 .productText
 {
 height: 30px;
+}
+
+.background
+{
+background: url("C:/Users/pomaz/Documents/GitHub/HandCraft/front/src/img/ProductBackground.png");
+background-size: contain;
+background-position: top;
+background: cover;
+display: flex;
+margin-top: 20px;
+}
+
+.sideText
+{
+    position: relative;
+    right: 0;
+    width: 800px;
+    float: right;
+    padding: 30px;
+
 }

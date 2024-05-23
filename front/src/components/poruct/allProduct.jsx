@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import YarnIcon from "../../img/YarnIcon.png";
 import CeramicIcon from "../../img/CeramicIcon.png";
 import NeedleIcon from "../../img/NeedleIcon.png";
-import ProductBackground from "../../img/ProductBackground.png";
+//import ProductBackground from "../../img/ProductBackground.png";
 
 
 function Product() {
@@ -26,7 +26,6 @@ function Product() {
 
         loading ? (
             <>
-                
                 <div className="rowInfo">
                     <div className="typeIconCircle">
                             <img
@@ -36,7 +35,6 @@ function Product() {
                             /> 
                     </div>
                     <div className="typeIconCircle">
-
                         <img
                             src={CeramicIcon}
                             alt={items.ImgName ? "Item Image" : "Перейти в раздел Керамики"}
@@ -44,7 +42,6 @@ function Product() {
                         />
                     </div>
                     <div className="typeIconCircle">
-
                         <img
                             src={NeedleIcon}
                             alt={items.ImgName ? "Item Image" : "Перейти в раздел Бисероплетения"}
@@ -52,23 +49,23 @@ function Product() {
                         />
                     </div>
                 </div>
-            
+        <div className="background">
         
-        <div className="row ">
-            {items.map((item) => (
-                <div key={item.id} className="cardProduct">
+            <div className="row ">
+                {items.map((item) => (
+                    <div key={item.id} className="cardProduct">
+                        
                     
-                   
-                    <img src={item.image} className="imgProduct" alt={item.title} />
-                   
-                    <p className="name">{item.title}</p>
-                    <div className="productText"><p className="descriptionStyle">{item.description}</p></div>
-                    <div className="productText"><p className="descriptionStyle">${item.price}</p></div>
-                    <div className="productText"><button className="buyButton" onClick={() => handleInfoClick(item.id)}>Buy</button></div>
-                </div>
-            ))}
+                        <img src={item.image} className="imgProduct" alt={item.title} />
+                    
+                        <p className="name">{item.title}</p>
+                        <div className="productText"><p className="descriptionStyle">{item.description}</p></div>
+                        <div className="productText"><p className="descriptionStyle">${item.price}</p></div>
+                        <div className="productText"><button className="buyButton" onClick={() => handleInfoClick(item.id)}>Buy</button></div>
+                    </div>
+                ))}
+            </div>
         </div>
-                
             </>
         ) : (
             <p>Loading...</p>

@@ -6,7 +6,7 @@ function Footer() {
     
     return (
         <footer>
-            <div className = ''>
+            <div className = 'footer'>
                 <img src ={footer}></img>
             </div>
 

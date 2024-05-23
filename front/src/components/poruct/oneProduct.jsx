@@ -20,14 +20,20 @@ function Product() {
 
     return (
         loading ? (
-            <div key={item.id} className="cardProduct">
-                <img src={item.image} className="imgProduct" alt={item.title} />
-                <p className="name">{item.title}</p>
-                <p className="descriptionStyle">{item.description}</p>
-                <p>${item.category}</p>
-                <p>${item.price}</p>
-                <button className="returnButton" onClick={() => navigate(-1)}>Return</button>
-            </div>
+            <section key={item.id} className="cardOfOneProduct">
+                <section>
+                    <img src={item.image} className="imgOfOneProduct" alt={item.title} />
+                </section>
+                <section className="sideText">
+                    <p className="productName">{item.title}</p>
+                    <p className="descriptionStyle">{item.description}</p>
+                    <p>{item.category}</p>
+                    <p className="priceStyle">{item.price}$</p>
+                    <button className="returnButton" onClick={() => navigate(-1)}>Return</button>
+                    <button className="buyButton" onClick={() => navigate(-1)}>AddToCart</button>
+                </section>
+                
+            </section>
         ) : (
             <p>Loading...</p>
         )
