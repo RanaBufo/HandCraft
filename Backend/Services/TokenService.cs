@@ -32,7 +32,7 @@ namespace HandCrafter.Services
             }
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim("Id", user.Id.ToString()));
-            claims.Add(new Claim(ClaimTypes.Role, "user"));
+            claims.Add(new Claim(ClaimTypes.Role, user.Contact.IdRole.ToString()));
 
             var singingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
 
@@ -62,7 +62,7 @@ namespace HandCrafter.Services
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName));
             claims.Add(new Claim("Id", user.Id.ToString()));
-            claims.Add(new Claim(ClaimTypes.Role, "user"));
+            claims.Add(new Claim(ClaimTypes.Role, user.Contact.IdRole.ToString()));
 
             var singingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
 

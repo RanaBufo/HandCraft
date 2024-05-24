@@ -71,7 +71,8 @@ namespace HandCrafter.Services
                     {
                         Email = c.Email,
                         Password = c.Password,
-                        Phone = c.Phone
+                        Phone = c.Phone,
+                        IdRole = c.IdRole
                     }
                 }).FirstOrDefault(j => j.Id == id);
             return user;
