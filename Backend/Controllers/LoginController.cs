@@ -24,16 +24,26 @@ namespace HandCrafter.Controllers
                 return Results.BadRequest();
             }
             string token = _tokenService.GetRefreshTokenService(120, id);
-            return Results.Json(token);
+            var successLogin = new
+            {
+                Id = id,
+                Token = token
+            };
+            return Results.Json(successLogin);
         }
         
         [HttpPost("Registration")]
-        public string Registration(UseresRequestModel newUser)
+        public IResult Registration(UseresRequestModel newUser)
         {
             _userService.AddUserService(newUser);
             int id = _registrationService.RegistrationUserService(newUser.Contact);
             string token  = _tokenService.GetRefreshTokenService(120, id);
-            return token;
+            var successLogin = new
+            {
+                Id = id,
+                Token = token
+            };
+            return Results.Json(successLogin);
         }
 
         

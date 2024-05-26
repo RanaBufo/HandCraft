@@ -94,3 +94,7 @@ hr{
   font-weight: bold;
   font-size: 18pt;
 }
+
+.exit:hover{
+  color:#FFFFFF;
+}

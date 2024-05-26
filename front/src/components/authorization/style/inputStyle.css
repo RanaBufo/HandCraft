@@ -75,6 +75,7 @@ button:hover {
   color: #faeddb;
   border: none;
   padding: 18px;
+  cursor: pointer;
 }
 
 .rightSH {
@@ -97,4 +98,15 @@ button:hover {
   margin-top: 2px;
   font-size: 10pt;
 
+}
+
+a{
+  margin-top: 10px;;
+  color: rgb(238, 144, 134, 100%);
+  font-weight: bold;
+}
+
+a:hover{
+  color: #c9454b;
+  cursor: pointer;
 }
