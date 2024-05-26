@@ -8,7 +8,7 @@ function Product() {
     const prodId = params.id;
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/' + prodId)
+        fetch('https://localhost:7073/Product/ProductByIdGet?id=' + prodId)
             .then((res) => res.json())
             .then((arr) => {
                 setItems(arr);
@@ -21,11 +21,11 @@ function Product() {
     return (
         loading ? (
             <div key={item.id} >
-                <img src={item.image} className="imgProduct" alt={item.title} />
-                <section className="sideText">
-                    <p className="name">{item.title}</p>
+                <section className="leftSideText"><div className="picCuter"><img src={item.image} className="imgProduct" alt={item.title} /></div></section>
+                <section className="rightSideText">
+                    <p className="name">{item.name}</p>
                     <p className="descriptionStyle">{item.description}</p>
-                    <p>${item.category}</p>
+                    <p>{item.category}</p>
                     <p>${item.price}</p>
                     <button className="buyButton" onClick={() => navigate(-1)}>Add To Cart</button>
                     <br /><button className="returnButton" onClick={() => navigate(-1)}>Return</button>
