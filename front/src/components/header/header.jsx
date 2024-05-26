@@ -1,7 +1,6 @@
 import "./style/header.css";
 import { useLocation } from "react-router-dom";
 import magnifier from "./../../img/magnifier.png";
-import userIcon from "./../../img/icons8-пользователь-48.png";
 import basket from "./../../img/Vectorbasket.svg";
 import settings from "./../../img/Vectorsettings.svg";
 import { useNavigate } from "react-router-dom";
@@ -25,16 +24,23 @@ function Header() {
     document.body.style.background = "#F0DEC6";
   }
   const userPageClick = () => {
-    navigate("/user");
+    if (refreshToken != null) {
+      navigate("/user");
+    }
+    navigate("/login");
   };
-  if (refreshToken != null) {
+  if (refreshToken != 'null') {
     if (imgName == "null") {
       imgName = imgUser;
     } else {
       imgName = "cat.png";
     }
   }
-  console.log("1" + refreshToken);
+  else{
+    
+  imgName = "icons8-пользователь-48.png";
+  }
+  console.log()
   return (
     <header>
       <div className="h-container" style={{ background: headerBackground }}>

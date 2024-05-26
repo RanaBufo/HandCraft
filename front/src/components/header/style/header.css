@@ -1,3 +1,14 @@
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 header{
     margin: 100px auto;
 }
@@ -62,7 +73,10 @@ header{
     border-radius: 50%;
     overflow: hidden;  
     padding: 5px;
-  
+    transition: transform 0.6s ease-in-out;
     display: flex;
     justify-content: center;
+}
+.icon-user:hover{
+    animation: rotate 0.6s ease-in-out forwards;
 }

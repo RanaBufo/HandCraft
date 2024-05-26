@@ -8,8 +8,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errorLog, setErrorLog] = useState(false);
   const navigate = useNavigate();
-  function saveToken(token) {
+  function saveToken(token, id) {
     sessionStorage.setItem("refreshToken", token);
+    sessionStorage.setItem("idUser", id);
   }
   const loginUser = () => {
     setErrorLog(false)
@@ -35,15 +36,14 @@ function Login() {
       })
         .then((response) => {
           if (!response.ok) {
-            return response.text().then((text) => {
+            return response.json().then((text) => {
               throw new Error(text);
             });
           }
-          return response.text(); // Возвращаем строковый ответ
+          return response.json(); // Возвращаем строковый ответ
         })
         .then((token) => {
-          saveToken(token);
-          console.log(token);
+          saveToken(token.token, token.id);
           navigate("/user");
         })
         .catch((error) => {
@@ -52,7 +52,9 @@ function Login() {
         });
     }
   };
-
+  const onRegistration = () => {
+    navigate("/registration");
+  };
   return (
     <>
       <img className="rightSH" src={nodeRight}></img>
@@ -76,7 +78,8 @@ function Login() {
             onChange={(event) => setPassword(event.target.value)}
           ></input>
         </div>
-        <button onClick={loginUser}>Вход</button>
+        <button onClick={loginUser}>Вход</button>        
+        <a onClick={onRegistration}>Зарегистрироваться</a>
       </div>
     </>
   );

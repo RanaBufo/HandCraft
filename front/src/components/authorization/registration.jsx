@@ -2,7 +2,7 @@ import "./style/inputStyle.css";
 import nodeRight from "../../img/noodle.png";
 import nodeLeft from "../../img/noodle2.png";
 
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,12 +12,13 @@ function Registration() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const navigate = useNavigate();
-  
-  function saveToken(token, imgUser) {
-    sessionStorage.setItem("refreshToken", JSON.stringify(token));
-    sessionStorage.setItem("imgUser", JSON.stringify(imgUser));
+
+  function saveToken(token, imgUser, idUser) {
+    sessionStorage.setItem("refreshToken", token);
+    sessionStorage.setItem("imgUser", imgUser);
+    sessionStorage.setItem("idUser", idUser);
   }
 
   const onSubmit = (data) => {
@@ -54,14 +55,14 @@ function Registration() {
     })
       .then((response) => {
         if (!response.ok) {
-          return response.text().then((text) => {
+          return response.json().then((text) => {
             throw new Error(text);
           });
         }
-        return response.text();
+        return response.json();
       })
       .then((token) => {
-        saveToken(token, null);
+        saveToken(token.token, null, token.id);
         navigate("/user");
       })
       .catch((error) => {
@@ -69,87 +70,107 @@ function Registration() {
       });
   };
 
+  const onLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <>
-    <div className="block"></div>
+      <div className="block"></div>
       <img className="rightSH" src={nodeRight}></img>
       <img className="leftSH" src={nodeLeft}></img>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="in-block">
           <h1>Регистрация</h1>
-          
+
           <div className="input-group">
             <label>Имя</label>
             <input
               type="text"
-              {...register('name', { required: "Имя обязательно" })}
+              {...register("name", { required: "Имя обязательно" })}
             />
-            {errors.name && <p className="errorMassage">{errors.name.message}</p>}
+            {errors.name && (
+              <p className="errorMassage">{errors.name.message}</p>
+            )}
           </div>
 
           <div className="input-group">
             <label>Отчество</label>
-            <input
-              type="text"
-              {...register('patronymic')}
-            />
+            <input type="text" {...register("patronymic")} />
           </div>
-          
+
           <div className="input-group">
             <label>Фамилия</label>
             <input
               type="text"
-              {...register('surname', { required: "Фамилия обязательна" })}
+              {...register("surname", { required: "Фамилия обязательна" })}
             />
-            {errors.surname && <p className="errorMassage">{errors.surname.message}</p>}
+            {errors.surname && (
+              <p className="errorMassage">{errors.surname.message}</p>
+            )}
           </div>
-          
+
           <div className="input-group">
             <label>День рождения</label>
             <input
               type="date"
-              {...register('dateBurn', { required: "Дата рождения обязательна" })}
+              {...register("dateBurn", {
+                required: "Дата рождения обязательна",
+              })}
             />
-            {errors.dateBurn && <p className="errorMassage">{errors.dateBurn.message}</p>}
+            {errors.dateBurn && (
+              <p className="errorMassage">{errors.dateBurn.message}</p>
+            )}
           </div>
-          
+
           <div className="input-group">
             <label>Номер телефона</label>
             <input
               type="text"
-              {...register('number', { required: "Номер телефона обязателен" })}
+              {...register("number", { required: "Номер телефона обязателен" })}
             />
-            {errors.number && <p className="errorMassage">{errors.number.message}</p>}
+            {errors.number && (
+              <p className="errorMassage">{errors.number.message}</p>
+            )}
           </div>
-          
+
           <div className="input-group">
             <label>E-mail</label>
             <input
               type="email"
-              {...register('email', { required: "Email обязателен" })}
+              {...register("email", { required: "Email обязателен" })}
             />
-            {errors.email && <p className="errorMassage">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="errorMassage">{errors.email.message}</p>
+            )}
           </div>
-          
+
           <div className="input-group">
             <label>Пароль</label>
             <input
               type="password"
-              {...register('password', { required: "Пароль обязателен" })}
+              {...register("password", { required: "Пароль обязателен" })}
             />
-            {errors.password && <p className="errorMassage">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="errorMassage">{errors.password.message}</p>
+            )}
           </div>
-          
+
           <div className="input-group">
             <label>Повторите пароль</label>
             <input
               type="password"
-              {...register('doublePassword', { required: "Подтверждение пароля обязательно" })}
+              {...register("doublePassword", {
+                required: "Подтверждение пароля обязательно",
+              })}
             />
-            {errors.doublePassword && <p className="errorMassage">{errors.doublePassword.message}</p>}
+            {errors.doublePassword && (
+              <p className="errorMassage">{errors.doublePassword.message}</p>
+            )}
           </div>
-          
+
           <button type="submit">Регистрация</button>
+          <a onClick={onLogin}>Войти</a>
         </div>
       </form>
     </>
