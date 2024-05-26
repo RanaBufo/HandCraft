@@ -14,7 +14,7 @@ function Product() {
     }, []);
     const navigate = useNavigate();
     const handleInfoClick = (id) => {
-        navigate("/"+id);// Используйте navigate для перехода на другую страницу
+        navigate("/products/"+id);// Используйте navigate для перехода на другую страницу
     };
 
     return (

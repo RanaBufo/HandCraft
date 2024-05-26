@@ -1,26 +1,33 @@
-.cardProduct{
+.cardProduct {
+    border-radius: 15%;
     width: 500px;
-    background: #F2E8E2;
-    color: #AA9F3D;
+    background: linear-gradient(90deg, rgb(255, 255, 223, 45%) 0%, rgb(255, 215, 188) 100%);
+    color: #000000;
     font-size: 20pt;
-    padding: 20px;
-    margin-top: 10px !important;    
-    margin-left: 10px !important;
-    max-height: 1300px;
+    padding: 35px;
+    margin-top: 60px !important;
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+    max-height: 1000px;
 }
+
+
 
 .name{
     font-weight: bold;
     font-size: 25pt;
 }
 
-.imgProduct{
+.imgProduct {
+    border-radius: 15%;
     width: 300px;
     max-height: 500px;
-    margin-left: 90px;
+    margin-left: 100px;
 }
+
 .row{
-    display: flex;flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
     margin-left: 75px;
 }
 
@@ -35,3 +42,17 @@
 .returnButton{
     width: 100px;
 }
+
+.buyButton {
+    width: 300px;
+    margin-bottom: 50px;
+    background-color: darksalmon;
+    color: #F2E8E2;
+    font-size: 24px;
+}
+
+.sideText {
+    float: right;
+    position: relative;
+}
+
