@@ -25,6 +25,11 @@
     margin-left: 100px;
 }
 
+.picCuter {
+    width: 500px;
+    height: 500px;
+}
+
 .row{
     display: flex;
     flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
@@ -35,6 +40,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 20px;
 }
 
 
@@ -51,8 +57,14 @@
     font-size: 24px;
 }
 
-.sideText {
+.rightSideText {
     float: right;
     position: relative;
+    margin-right: 300px;
 }
 
+.leftSideText {
+    float: left;
+    position: relative;
+    margin-left: 200px;
+}

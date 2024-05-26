@@ -1,8 +1,9 @@
 import "./style/header.css";
 import { useLocation } from "react-router-dom";
 import magnifier from "./../../img/magnifier.png";
-import basket from "./../../img/Vectorbasket.svg";
-import settings from "./../../img/Vectorsettings.svg";
+import basket from "./../../img/Vectorbasket.png";
+import menu from './../../img/MenuIcon.png';
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
@@ -23,14 +24,15 @@ function Header() {
       "linear-gradient(90deg, rgba(255,193,189,1) 0%, rgba(255,128,127,1) 100%)";
     document.body.style.background = "#F0DEC6";
   }
+    const [isOpen, setOpen] = useState(false);
   const userPageClick = () => {
     if (refreshToken != null) {
       navigate("/user");
     }
     navigate("/login");
   };
-  if (refreshToken != 'null') {
-    if (imgName == "null") {
+  if (refreshToken !== 'null') {
+    if (imgName === "null") {
       imgName = imgUser;
     } else {
       imgName = "cat.png";
@@ -59,7 +61,20 @@ function Header() {
               />
             </div>
             <img src={basket} className="icon-header" alt="Basket" />
-            <img src={settings} className="icon-header" alt="Settings" />
+            <img className='menuButton icon-header icon-menu' onClick={() => setOpen(!isOpen)} src={menu} alt="Menu" />
+            <nav className={`menuCategories ${isOpen ? "active" : ""}`}>
+                <ul className="menu__list"> 
+                    <li className="menu__item">Шапки</li>
+                    <li className="menu__item">Шарфы</li>
+                    <li className="menu__item">Шали</li>
+                    <li className="menu__item">Свитеры</li>
+                    <li className="menu__item">Пледы</li>
+                    <li className="menu__item">Платья</li>
+                    <li className="menu__item">Топы</li>
+                    <li className="menu__item">Юбки</li>
+                    <li className="menu__item">Шопперы</li>
+                </ul>
+            </nav>
           </div>
         </div>
       </div>

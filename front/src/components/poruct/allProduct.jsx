@@ -5,7 +5,7 @@ function Product() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://localhost:7073/Product/ProductsGet/')
         .then((res) => res.json())
         .then((arr) => {
             setItems(arr);
@@ -22,7 +22,7 @@ function Product() {
             {items.map((item) => (
               <div key={item.id} className="cardProduct">
                 <img src={item.image} className="imgProduct" alt={item.title} />
-                  <p className="name">{item.title}</p>
+                  <p className="name">{item.name}</p>
                   <p className="descriptionStyle">{item.description}</p>
                   <p>${item.price}</p>
                   <button onClick={() => handleInfoClick(item.id)}>Info</button>
