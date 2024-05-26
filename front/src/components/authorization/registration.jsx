@@ -15,8 +15,9 @@ function Registration() {
   
   const navigate = useNavigate();
   
-  function saveToken(token) {
+  function saveToken(token, imgUser) {
     sessionStorage.setItem("refreshToken", JSON.stringify(token));
+    sessionStorage.setItem("imgUser", JSON.stringify(imgUser));
   }
 
   const onSubmit = (data) => {
@@ -60,7 +61,7 @@ function Registration() {
         return response.text();
       })
       .then((token) => {
-        saveToken(token);
+        saveToken(token, null);
         navigate("/user");
       })
       .catch((error) => {
