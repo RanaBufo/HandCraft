@@ -32,8 +32,8 @@ function Header() {
     navigate("/login");
   };
 
-  if (refreshToken != 'null') {
-    if (imgName == 'null') {
+  if (refreshToken != 'null' && refreshToken != null) {
+    if (imgName == 'null' && imgName != null) {
 
       imgName = imgUser;
     } else {
@@ -45,6 +45,8 @@ function Header() {
   imgName = "icons8-пользователь-48.png";
   }
   console.log(imgName)
+  
+  console.log(refreshToken)
   return (
     <header>
       <div className="h-container" style={{ background: headerBackground }}>
