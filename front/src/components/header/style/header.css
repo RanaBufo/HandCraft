@@ -127,10 +127,24 @@ header{
     font-weight: 500;
     cursor: pointer;
     margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: all 500ms ease;
+}
+
+.menu__item:hover{
+    border-color: #f6b599;
+    transform: scale(1.1);
 }
 
 .menu__item:nth-child(n+2) {
 
     margin-top: 20px;
+}
+
+.menu__item:first-child{
+    font-size: 26px;
+    font-weight: bold;
 }
 

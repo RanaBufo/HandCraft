@@ -5,8 +5,10 @@ import basket from "./../../img/Vectorbasket.png";
 import menu from './../../img/MenuIcon.png';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Header() {
+  const params = useParams();
   const navigate = useNavigate();
   let imgUser = sessionStorage.getItem("imgUser");
   let refreshToken = sessionStorage.getItem("refreshToken");
@@ -24,7 +26,7 @@ function Header() {
       "linear-gradient(90deg, rgba(255,193,189,1) 0%, rgba(255,128,127,1) 100%)";
     document.body.style.background = "#F0DEC6";
   }
-    const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const userPageClick = () => {
     if (refreshToken != null) {
       navigate("/user");
@@ -38,11 +40,26 @@ function Header() {
       imgName = "cat.png";
     }
   }
-  else{
-    
-  imgName = "icons8-пользователь-48.png";
+  else {
+
+    imgName = "icons8-пользователь-48.png";
   }
   console.log()
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // Запрос к API для получения данных о категориях
+    fetch('https://localhost:7073/Category/GetCategory')
+      .then(res => res.json())
+      .then(data => setCategories(data));
+  }, []);
+
+  const [selectedCategory, setSelectedCategory] = useState("Все товары");
+  const handleCategoryClick = (category) => { // Передаем имя категории
+    setSelectedCategory(category.id);
+    //setOpen(false);
+  };
+
   return (
     <header>
       <div className="h-container" style={{ background: headerBackground }}>
@@ -63,17 +80,24 @@ function Header() {
             <img src={basket} className="icon-header" alt="Basket" />
             <img className='menuButton icon-header icon-menu' onClick={() => setOpen(!isOpen)} src={menu} alt="Menu" />
             <nav className={`menuCategories ${isOpen ? "active" : ""}`}>
-                <ul className="menu__list"> 
-                    <li className="menu__item">Шапки</li>
-                    <li className="menu__item">Шарфы</li>
-                    <li className="menu__item">Шали</li>
-                    <li className="menu__item">Свитеры</li>
-                    <li className="menu__item">Пледы</li>
-                    <li className="menu__item">Платья</li>
-                    <li className="menu__item">Топы</li>
-                    <li className="menu__item">Юбки</li>
-                    <li className="menu__item">Шопперы</li>
-                </ul>
+              <ul className="menu__list">
+                <li
+                  key="Все товары"
+                  className="menu__item"
+                  onClick={() => handleCategoryClick("Все товары")} // Передаем "Все товары" для всех товаров
+                >
+                  Все товары
+                </li>
+                {categories.map((category) => (
+                  <li
+                    key={category.name}
+                    className="menu__item"
+                    onClick={() => handleCategoryClick(category.id)} // Передаем имя категории
+                  >
+                    {category.name}
+                  </li>
+                ))}
+              </ul>
             </nav>
           </div>
         </div>
