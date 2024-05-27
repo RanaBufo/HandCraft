@@ -84,13 +84,13 @@ function Header() {
                 <li
                   key="Все товары"
                   className="menu__item"
-                  onClick={() => handleCategoryClick("Все товары")} // Передаем "Все товары" для всех товаров
+                  onClick={() => handleCategoryClick(0)} // Передаем "Все товары" для всех товаров
                 >
                   Все товары
                 </li>
                 {categories.map((category) => (
                   <li
-                    key={category.name}
+                    key={category.id}
                     className="menu__item"
                     onClick={() => handleCategoryClick(category.id)} // Передаем имя категории
                   >
