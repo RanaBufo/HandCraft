@@ -8,6 +8,7 @@ import OneProduct from './components/poruct/oneProduct.jsx';
 import './style/common.css';
 import './components/userPage/style/main.css'
 import './components/poruct/style/allProduct.css'
+import AddProduct from "./components/addProduct/addProduct.jsx";
 //создание функции с названием App()
 function App() { 
  
@@ -21,6 +22,7 @@ function App() {
       <Route path = "/Login" element = {<Login />} />
       <Route path = "/" element={<AllProduct/>}/>
       <Route path = "/products/:id" element = {<OneProduct />} />
+      <Route path="/addProduct" element={<AddProduct />} />
     </Routes>
     </>
   );
