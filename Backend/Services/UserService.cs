@@ -1,5 +1,6 @@
 ﻿using HandCrafter.DataBase;
 using HandCrafter.Model;
+using System.Data.Entity;
 
 namespace HandCrafter.Services
 {
@@ -56,23 +57,22 @@ namespace HandCrafter.Services
         public UserDB GetUserService(int id)
         {
             var user = _db.Users
-                .Join(_db.Contacts,
-                u => u.Id,
-                c => c.IdUser,
-                (u, c) => new UserDB
+                .Include(u => u.Contact)
+                .GroupBy(u => u.Id)
+                .Select(u => new UserDB
                 {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Patronymic = u.Patronymic,
-                    Description = u.Description,
-                    Birthday = u.Birthday,
+                    Id = u.Select(u => u.Id).FirstOrDefault(),
+                    FirstName = u.Select(u => u.FirstName).FirstOrDefault(),
+                    LastName = u.Select(u => u.LastName).FirstOrDefault(),
+                    Patronymic = u.Select(u => u.Patronymic).FirstOrDefault(),
+                    Description = u.Select(u => u.Description).FirstOrDefault(),
+                    Birthday = u.Select(u => u.Birthday).FirstOrDefault(),
                     Contact = new ContactDB
                     {
-                        Email = c.Email,
-                        Password = c.Password,
-                        Phone = c.Phone,
-                        IdRole = c.IdRole
+                        Email = u.Select(u => u.Contact.Email).FirstOrDefault(),
+                        Password = u.Select(u => u.Contact.Password).FirstOrDefault(),
+                        Phone = u.Select(u => u.Contact.Phone).FirstOrDefault(),
+                        IdRole = u.Select(u => u.Contact.IdRole).FirstOrDefault(),
                     }
                 }).FirstOrDefault(j => j.Id == id);
             return user;
