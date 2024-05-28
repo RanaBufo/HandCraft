@@ -12,7 +12,7 @@ namespace HandCrafter.Services
         {
             var users = _db.Contacts
                 .Where(c => c.Password == contact.Password)
-                .Where(c => contact.Email == c.Email || contact.Phone == c.Phone)
+                .Where(c => contact.Email == c.Email || contact.Phone == c.Phone || contact.Phone == c.Email || contact.Email == c.Phone)
                 .ToList();
             if(users.Count == 0) { 
                 return 0;

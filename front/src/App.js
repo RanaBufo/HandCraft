@@ -5,9 +5,12 @@ import Registration from "./components/authorization/registration.jsx";
 import Login from './components/authorization/login.jsx';
 import AllProduct from './components/poruct/allProduct.jsx';
 import OneProduct from './components/poruct/oneProduct.jsx';
+import Bascket from "./components/bascket/bascket.jsx";
 import './style/common.css';
 import './components/userPage/style/main.css'
 import './components/poruct/style/allProduct.css'
+import "./components/authorization/style/inputStyle.css";
+import "./components/bascket/style/basket.css";
 //создание функции с названием App()
 function App() { 
  
@@ -20,6 +23,7 @@ function App() {
       <Route path = "/registration" element={<Registration/>} />
       <Route path = "/Login" element = {<Login />} />
       <Route path = "/" element={<AllProduct/>}/>
+      <Route path = "/bascket" element={<Bascket/>}/>
       <Route path = "/products/:id" element = {<OneProduct />} />
     </Routes>
     </>
