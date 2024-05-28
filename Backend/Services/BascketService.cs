@@ -42,18 +42,20 @@ namespace HandCrafter.Services
         public List<BasketDB> getAllItemsBasketService(int id)
         {
             var allItems = _db.Baskets
-                .Include(b => b.Product)
-                .Where(b => b.IdUser == id)
-                .GroupBy(b => b.IdProduct)
-                .Select(b => new BasketDB
-                {
-                    Id = b.Select(b => b.Id).FirstOrDefault(),
-                    IdUser = b.Select(b => b.IdUser).FirstOrDefault(),
-                    IdProduct = b.Select(b=>b.IdProduct).FirstOrDefault(),
-                    Quantity = b.Select(b=>b.Quantity).FirstOrDefault(),
-                    Price = b.Select(b=>b.Price).FirstOrDefault(),
-                    Product = b.Select(b => b.Product).FirstOrDefault()
-                }).ToList();
+        .Include(b => b.Product)
+        .Where(b => b.IdUser == id)
+        .GroupBy(b => b.IdProduct)
+        .Select(g => new BasketDB
+        {
+            Id = g.First().Id,
+            IdUser = g.First().IdUser,
+            IdProduct = g.Key,
+            Quantity = g.Sum(b => b.Quantity),
+            Price = g.Sum(b => b.Price),
+            Product = g.First().Product
+        })
+        .ToList();
+
             return allItems;
         }
         public bool updateQuentityBasketService(BasketQuantityRequest basketQuantity)
@@ -71,8 +73,13 @@ namespace HandCrafter.Services
                     Product = b.Select(b => b.Product).FirstOrDefault()
                 })
                 .Where(b => b.Id == basketQuantity.Id).FirstOrDefault();
-            if (item != null)
+            if (item != null && item.Product.Quantity >= basketQuantity.Quentity)
             {
+                if(basketQuantity.Quentity == 0)
+                {
+                    deleteBasketItemService(basketQuantity.Id);
+                    return true;
+                }
                 item.Quantity = basketQuantity.Quentity;
                 item.Price = basketQuantity.Quentity * item.Product.Price;
                 _db.Baskets.Update(item);
@@ -82,9 +89,9 @@ namespace HandCrafter.Services
             return false;
         }
 
-        public bool deleteBasketItemService(GetIdModel id)
+        public bool deleteBasketItemService(int id)
         {
-            var basket = _db.Baskets.FirstOrDefault(b => b.Id == id.Id);
+            var basket = _db.Baskets.FirstOrDefault(b => b.Id == id);
 
             if (basket == null)
             {

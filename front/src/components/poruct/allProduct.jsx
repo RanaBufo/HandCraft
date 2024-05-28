@@ -21,7 +21,7 @@ function Product() {
         loading ? (<div className="row position">
             {items.map((item) => (
               <div key={item.id} className="cardProduct">
-                <img src={item.image} className="imgProduct" alt={item.title} />
+                <img src={`https://localhost:7073/img/${item.imgName}`} className="imgProduct" alt={item.title} />
                   <p className="name">{item.name}</p>
                   <p className="descriptionStyle">{item.description}</p>
                   <p>${item.price}</p>

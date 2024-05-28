@@ -1,4 +1,3 @@
-import "./style/inputStyle.css";
 import nodeRight from "../../img/noodle.png";
 import nodeLeft from "../../img/noodle2.png";
 

@@ -26,10 +26,14 @@ function Header() {
   }
     const [isOpen, setOpen] = useState(false);
   const userPageClick = () => {
-    if (refreshToken != null) {
+    console.log(refreshToken)
+    if (refreshToken !== null && refreshToken !== 'null') {
       navigate("/user");
     }
-    navigate("/login");
+    else{
+      navigate("/login");
+    }
+   
   };
 
   if (refreshToken != 'null' && refreshToken != null) {
@@ -64,7 +68,7 @@ function Header() {
                 alt="User"
               />
             </div>
-            <img src={basket} className="icon-header" alt="Basket" />
+            <img src={basket} onClick={() => navigate("/bascket")} className="icon-header" alt="Basket" />
             <img className='menuButton icon-header icon-menu' onClick={() => setOpen(!isOpen)} src={menu} alt="Menu" />
             <nav className={`menuCategories ${isOpen ? "active" : ""}`}>
                 <ul className="menu__list"> 

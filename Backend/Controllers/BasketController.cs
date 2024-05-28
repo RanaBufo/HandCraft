@@ -29,6 +29,8 @@ namespace HandCrafter.Controllers
             {
                 return Json(allItems);
             }
+
+            return Json(allItems);
             return NotFound();
         }
 
@@ -54,7 +56,7 @@ namespace HandCrafter.Controllers
         }
 
         [HttpDelete("BasketDelete")]
-        public IActionResult BasketDelete(GetIdModel id)
+        public IActionResult BasketDelete(int id)
         {
             if (_basketService.deleteBasketItemService(id))
             {
