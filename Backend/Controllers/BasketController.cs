@@ -1,5 +1,6 @@
 ﻿using HandCrafter.Model;
 using HandCrafter.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HandCrafter.Controllers
@@ -11,6 +12,8 @@ namespace HandCrafter.Controllers
         private readonly BascketService _basketService;
         public BasketController(BascketService basketService) => (_basketService) = (basketService);
 
+
+        [Authorize]
         [HttpPost("BasketPost")]
         public IResult BasketPost(BasketRequest newItem)
         {
@@ -21,6 +24,8 @@ namespace HandCrafter.Controllers
             return Results.NotFound();
         }
 
+
+        [Authorize]
         [HttpGet("BasketGet")]
         public IActionResult BasketGet(int id)
         {
@@ -34,6 +39,8 @@ namespace HandCrafter.Controllers
             return NotFound();
         }
 
+
+        [Authorize]
         [HttpGet("BasketItemGet")]
         public IActionResult BasketItemGet(int idProduct, int idUser)
         {
@@ -45,6 +52,8 @@ namespace HandCrafter.Controllers
             return NotFound();
         }
 
+
+        [Authorize]
         [HttpPut("BasketPut")]
         public IActionResult BasketPut(BasketQuantityRequest basketQuantity)
         {

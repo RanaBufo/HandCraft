@@ -8,12 +8,15 @@ function UserPage() {
   const params = useParams();
   const navigate = useNavigate();
   let refreshToken = sessionStorage.getItem("refreshToken");
-  function saveToken(token, id,imgUser) {
+  let role = sessionStorage.getItem("role");
+  function saveToken(token, id, imgUser) {
     sessionStorage.setItem("refreshToken", token);
     sessionStorage.setItem("idUser", id);
-    sessionStorage.setItem("imgUser",imgUser);
+    sessionStorage.setItem("imgUser", imgUser);
   }
-  console.log(refreshToken);
+  function saveRole(role) {
+    sessionStorage.setItem("role", role);
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,7 +27,7 @@ function UserPage() {
           "Content-Type": "application/json;charset=utf-8",
           Authorization: `Bearer ${refreshToken}`,
         };
-        
+
         const tokenResponse = await fetch(url, {
           method: "POST",
           body: JSON.stringify(body),
@@ -51,6 +54,8 @@ function UserPage() {
           })
           .then((userData) => {
             setItems(userData);
+
+            saveRole(userData.contact.role.name);
             setLoading(true);
             return userData;
           });
@@ -70,11 +75,14 @@ function UserPage() {
   if (imgData == null) {
     imgData = "cat.png";
   }
-  console.log(items);
+
   const exitButton = () => {
-    saveToken(null, null, null);
+    saveToken(null, null, null, null);
     navigate("/");
-  }
+  };
+  const addProductButton = () => {
+    navigate("/addProduct");
+  };
   return loading ? (
     <main>
       <div className="cardBackground">
@@ -98,8 +106,8 @@ function UserPage() {
         </div>
         <div className="rowInfo">
           <p className="pCLass">{items.firstName}</p>
-          <p className="pCLass">{items.lastName}</p>
           <p className="pCLass">{items.patronymic}</p>
+          <p className="pCLass">{items.lastName}</p>
         </div>
         <div className="k"></div>
         <div className="centerElement">
@@ -114,7 +122,18 @@ function UserPage() {
             </div>
           </div>
         </div>
-        <button className="exit" onClick={exitButton}>Выйти</button>
+        
+        <div className="row">
+        <button className="exit" onClick={exitButton}>
+          Выйти
+        </button>
+        {role === "admin" && (
+          <div>
+          <button className="addProduct" onClick={addProductButton}>
+            Добавить продукт
+          </button>
+          </div>
+        )}</div>
       </div>
     </main>
   ) : (

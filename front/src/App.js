@@ -6,6 +6,7 @@ import Login from './components/authorization/login.jsx';
 import AllProduct from './components/poruct/allProduct.jsx';
 import OneProduct from './components/poruct/oneProduct.jsx';
 import Bascket from "./components/bascket/bascket.jsx";
+import AddProduct from "./components/addProduct/addProduct.jsx";
 import './style/common.css';
 import './components/userPage/style/main.css'
 import './components/poruct/style/allProduct.css'
@@ -25,6 +26,7 @@ function App() {
       <Route path = "/" element={<AllProduct/>}/>
       <Route path = "/bascket" element={<Bascket/>}/>
       <Route path = "/products/:id" element = {<OneProduct />} />
+      <Route path = "/addProduct" element = {<AddProduct />} />
     </Routes>
     </>
   );
