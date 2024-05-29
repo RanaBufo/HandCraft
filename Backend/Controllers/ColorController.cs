@@ -16,31 +16,31 @@ namespace HandCrafter.Controllers
 
 
         [HttpGet("GetColor")]
-        public async Task<IResult> GetColor()
+        public IResult GetColor()
         {
-            var allColors = await _colorService.GetColorsService();
+            var allColors =  _colorService.GetColorsService();
             return Results.Json(allColors);
         }
 
         [HttpPost("PostColor")]
-        public async Task<IActionResult> PostColor(PostNameModel postColor)
+        public IActionResult PostColor(PostNameModel postColor)
         {
             if (!_validService.ValidString(postColor.Name))
             {
                 return BadRequest();
             }
-            await _colorService.AddColorService(postColor.Name);
+            _colorService.AddColorService(postColor.Name);
             return Ok();
         }
 
         [HttpDelete("DeleteColor")]
-        public async Task<IActionResult> DeleteColor(GetIdModel colorId)
+        public IActionResult DeleteColor(GetIdModel colorId)
         {
             if (!_validService.ValidId(colorId.Id))
             {
                 return BadRequest();
             }
-            await _colorService.DeleteColorService(colorId.Id);
+            _colorService.DeleteColorService(colorId.Id);
             return Ok();
         }
     }

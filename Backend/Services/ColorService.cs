@@ -9,30 +9,30 @@ namespace HandCrafter.Services
 
         public ColorService(ApplicationContext db) => (_db) = (db);
 
-        public async Task<List<ColorDB>> GetColorsService()
+        public List<ColorDB> GetColorsService()
         {
-            var allColors = await _db.Colors.ToListAsync();
+            var allColors = _db.Colors.ToList();
             return allColors;
         }
-        public async Task AddColorService(string? Name)
+        public void AddColorService(string? Name)
         {
             var newColor = new ColorDB
             {
-                Name = Name ?? "NewRole"
+                Name = Name ?? "NewColor"
             };
             _db.Colors.Add(newColor);
-            await _db.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
-        public async Task DeleteColorService(int? id)
+        public void DeleteColorService(int? id)
         {
-            var allColors = await GetColorsService();
+            var allColors = GetColorsService();
             foreach (var color in allColors)
             {
                 if (color.Id == id)
                 {
                     _db.Colors.Remove(color);
-                    await _db.SaveChangesAsync();
+                    _db.SaveChanges();
                     break;
                 }
             }

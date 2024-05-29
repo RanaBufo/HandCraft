@@ -1,0 +1,21 @@
+.center {
+  display: grid;
+  place-items: center;
+  margin: 0px;
+  margin-bottom: 3px;
+}
+.L {
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+.margin-el {
+  margin-right: 30px;
+}
+
+.checkboxStyle {
+  width: auto;
+}
+.addImg{
+  background: transparent !important;
+}

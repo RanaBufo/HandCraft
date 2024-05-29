@@ -7,7 +7,9 @@
   top: 100px;
 }
 input {
-  position: static;
+  
+  position: relative;
+  width: 89%;
   display: block !important;
   font-size: 12pt;
   padding: 9px;
@@ -26,7 +28,7 @@ input:focus {
 }
 
 .in-block {
-  width: 500px;
+  width: 600px;
   height: auto;
   position: absolute;
   top: 50%;
@@ -59,19 +61,21 @@ h1 {
   font-weight: bold;
 }
 button {
+  position: relative;
   font-size: 12pt;
   padding: 15px;
   margin-top: 10px;
   border-radius: 15px;
-  border-color: rgb(238, 144, 134, 85%);
+  border-color: rgb(238, 144, 134, 100%);
   border-width: 3px;
   background: transparent;
   border-style: solid;
-  color: rgb(238, 144, 134, 85%);
+  color: rgb(238, 144, 134, 100%);
   font-weight: bold;
+  z-index: 0;
 }
 button:hover {
-  background: rgb(238, 144, 134, 85%);
+  background: rgb(238, 144, 134, 100%);
   color: #faeddb;
   border: none;
   padding: 18px;
@@ -84,6 +88,7 @@ button:hover {
   right: 0;
   opacity: 0.4;
   background: transparent;
+  z-index: -1;
 }
 .leftSH {
   width: 500px;
@@ -104,6 +109,7 @@ a{
   margin-top: 10px;;
   color: rgb(238, 144, 134, 100%);
   font-weight: bold;
+  z-index: 1;
 }
 
 a:hover{

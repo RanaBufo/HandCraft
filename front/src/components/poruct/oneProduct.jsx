@@ -86,8 +86,12 @@ function Product() {
     item && (
       <div key={item.id}>
         <section className="leftSideText">
-          <div className="picCuter">
-            <img src={`https://localhost:7073/img/${item.imgName}`} className="imgProduct" alt={item.title} />
+        <div className="parentProduct oneImg">
+            <img
+              src={`https://localhost:7073/img/${item.imgName}`}
+              className="imgProduct"
+              alt={item.title}
+            />
           </div>
         </section>
         <section className="rightSideText">

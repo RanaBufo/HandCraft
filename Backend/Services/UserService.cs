@@ -1,4 +1,5 @@
 ﻿using HandCrafter.DataBase;
+using HandCrafter.Migrations;
 using HandCrafter.Model;
 using System.Data.Entity;
 
@@ -48,8 +49,10 @@ namespace HandCrafter.Services
                     {
                         Email = c.Email,
                         Password = c.Password,
-                        Phone = c.Phone
+                        Phone = c.Phone,
+                        Role = c.Role
                     }
+                    
                 }).ToList();
             return users;
         }
@@ -73,6 +76,7 @@ namespace HandCrafter.Services
                         Password = u.Select(u => u.Contact.Password).FirstOrDefault(),
                         Phone = u.Select(u => u.Contact.Phone).FirstOrDefault(),
                         IdRole = u.Select(u => u.Contact.IdRole).FirstOrDefault(),
+                        Role = u.Select(u => u.Contact.Role).FirstOrDefault()
                     }
                 }).FirstOrDefault(j => j.Id == id);
             return user;

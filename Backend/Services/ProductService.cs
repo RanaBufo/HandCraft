@@ -85,7 +85,6 @@ namespace HandCrafter.Services
 
                         _db.SaveChanges();
                     }
-
                 }
             }
 

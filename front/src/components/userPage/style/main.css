@@ -1,5 +1,5 @@
 .userCard {
-  width: 500px;
+  width: 600px;
   background: #FFFFFF;
   border-radius: 10px;
   padding: 30px;
@@ -97,4 +97,13 @@ hr{
 
 .exit:hover{
   color:#FFFFFF;
+}
+
+.addProduct:hover{
+  color:#FFFFFF;
+}
+
+.addProduct{
+  position: relative;
+  right: -300px;
 }

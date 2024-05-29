@@ -1,16 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
 
 namespace HandCrafter.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FileController : Controller
+    public class FileController : ControllerBase
     {
         private readonly string _uploadsFolderPath;
+
         public FileController(IWebHostEnvironment environment)
         {
             _uploadsFolderPath = Path.Combine(environment.WebRootPath, "img");
         }
+
         [HttpPost("Upload")]
         public IActionResult Upload(IFormFile file)
         {
@@ -47,6 +53,5 @@ namespace HandCrafter.Controllers
                 return StatusCode(500, $"Ошибка при загрузке файла: {ex.Message}");
             }
         }
-
     }
 }
