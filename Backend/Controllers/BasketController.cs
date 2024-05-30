@@ -73,5 +73,15 @@ namespace HandCrafter.Controllers
             }
             return NotFound();
         }
+
+        [HttpDelete("BasketDeleteUserId")]
+        public IActionResult BasketDeleteByUserId(int id)
+        {
+            if (_basketService.deleteBasketIdUserService(id))
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

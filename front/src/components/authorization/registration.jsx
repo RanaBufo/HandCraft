@@ -11,7 +11,6 @@ function Registration() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const navigate = useNavigate();
 
   function saveToken(token, imgUser, idUser) {
@@ -75,6 +74,7 @@ function Registration() {
 
   return (
     <>
+      <div className="back"></div>
       <div className="block"></div>
       <img className="rightSH" src={nodeRight}></img>
       <img className="leftSH" src={nodeLeft}></img>

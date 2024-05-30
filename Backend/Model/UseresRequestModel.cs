@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HandCrafter.DataBase;
+using System.ComponentModel.DataAnnotations;
 
 namespace HandCrafter.Model
 {
@@ -10,6 +11,8 @@ namespace HandCrafter.Model
         public string? Description { get; set; }
         public DateOnly Birhday { get; set; }
         public ContactRequestModel Contact { get; set; }
-        
+        public List<AddressRequestModel>? Address {  get; set; }
+
+
     }
 }

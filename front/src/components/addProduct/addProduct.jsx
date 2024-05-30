@@ -141,6 +141,7 @@ function AddProduct() {
       {role !== "admin" ? (
         <p>Нет доступа!</p>
       ) : (
+        <>
         <div className="in-block">
           <h1>Добавить продукт</h1>
           {errorLog && <p className="errorStyle">Ошибка!!!</p>}
@@ -296,8 +297,10 @@ function AddProduct() {
           </div>
           <button onClick={addButton}>Добавить</button>
         </div>
+        </>
       )}
     </>
+    
   ) : (
     <p>Loading...</p>
   );

@@ -31,6 +31,11 @@ namespace HandCrafter.Services
                     Quantity = newItem.Quantity,
                     Discount = newItem.Discount
                 };
+                    var bascket = getItemBasketService(newItem.IdProduct, newItem.IdUser);
+                if(bascket == null)
+                {
+                    return false;
+                }
                 _db.Baskets.Add(item);
                 _db.SaveChanges();
                 return true;
@@ -61,21 +66,24 @@ namespace HandCrafter.Services
         public bool updateQuentityBasketService(BasketQuantityRequest basketQuantity)
         {
             var item = _db.Baskets
-                .Include(b => b.Product)
-                .GroupBy(b => b.IdProduct)
-                .Select(b => new BasketDB
-                {
-                    Id = b.Select(b => b.Id).FirstOrDefault(),
-                    IdUser = b.Select(b => b.IdUser).FirstOrDefault(),
-                    IdProduct = b.Select(b => b.IdProduct).FirstOrDefault(),
-                    Quantity = b.Select(b => b.Quantity).FirstOrDefault(),
-                    Price = b.Select(b => b.Price).FirstOrDefault(),
-                    Product = b.Select(b => b.Product).FirstOrDefault()
-                })
-                .Where(b => b.Id == basketQuantity.Id).FirstOrDefault();
-            if (item != null && item.Product.Quantity >= basketQuantity.Quentity)
+    .Include(b => b.Product)
+    .Where(b => b.Id == basketQuantity.Id)
+    .GroupBy(b => b.IdProduct)
+    .Select(group => new BasketDB
+    {
+        Id = group.Select(b => b.Id).FirstOrDefault(),
+        IdUser = group.Select(b => b.IdUser).FirstOrDefault(),
+        IdProduct = group.Key, // Теперь это ключ группировки (IdProduct)
+        Quantity = group.Select(b => b.Quantity).FirstOrDefault(),
+        Price = group.Select(b => b.Price).FirstOrDefault(),
+        Product = group.Select(b => b.Product).FirstOrDefault()
+    })
+    .FirstOrDefault();
+
+
+            if (item != null && item.Product.Quantity > basketQuantity.Quentity)
             {
-                if(basketQuantity.Quentity == 0)
+                if (basketQuantity.Quentity == 0)
                 {
                     deleteBasketItemService(basketQuantity.Id);
                     return true;
@@ -100,6 +108,25 @@ namespace HandCrafter.Services
 
             // Удаление элемента
             _db.Baskets.Remove(basket);
+            _db.SaveChanges();
+
+            return true;
+        }
+        public bool deleteBasketIdUserService(int id)
+        {
+            var basket = _db.Baskets.Where(b => b.IdUser == id)
+                .ToList();
+
+            if (basket == null)
+            {
+                return false;
+            }
+
+            foreach (var item in basket)
+            {
+                _db.Baskets.Remove(item);
+            }
+
             _db.SaveChanges();
 
             return true;

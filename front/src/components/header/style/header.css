@@ -5,11 +5,31 @@
 }
 
 @font-face {
-  font-family: "Comfortaa";
-  src: local("Comfortaa"), url(../../../fonts/Comfortaa-Bold.ttf);
+  font-family: "ComfortaaBold";
+  src: local("ComfortaaBold"), url(../../../fonts/Comfortaa-Bold.ttf);
   font-weight:bold;
 }
+@font-face {
+  font-family: "Bluecurve";
+  src: local("Bluecurve"), url(../../../fonts/Bluecurve-Regular.ttf);
+  font-weight: 400;
+}
 
+@font-face {
+  font-family: "Bluecurve";
+  src: local("Bluecurve"), url(../../../fonts/Bluecurve-Bold.ttf);
+  font-weight:bold;
+}
+@font-face {
+  font-family: "Bardo";
+  src: local("Bardo"), url(../../../fonts/Bardo.otf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Zametka";
+  src: local("Zametka"), url(../../../fonts/Zametka_Parletter.otf);
+  font-weight: 400;
+}
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -19,13 +39,16 @@
   }
 }
 p{
-    font-family: 'Comfortaa';
+    font-family: 'ComfortaaBold';
+    
 }
 label{
-    font-family: 'Comfortaa';
+    font-family: 'ComfortaaBold';
 }
 h1{
-    font-family: 'Comfortaa';
+    font-family: 'ComfortaaBold';
+    
+  font-weight: bold;
 }
 header {
   margin: 100px auto;
@@ -41,7 +64,10 @@ li{
   font-size: 14pt;
 }
 
+
 .h-container {
+  
+  z-index: 3;
   width: 900px;
   background: rgb(255, 193, 189);
   background: linear-gradient(
@@ -79,10 +105,9 @@ li{
   margin-top: 7px;
 }
 .icon-header {
-  width: 32px;
-  margin-right: 40px;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 5px;
+  width: 43px;
+  height: 43px;
 }
 
 .icon-cart {
@@ -94,7 +119,10 @@ li{
 }
 
 .icon-user {
-  width: 100%;
+  width: 90px;
+  height: 100px;
+  position: relative;
+  top:-30px;
 }
 .icon-user:hover {
   rotate: 30px;
@@ -106,6 +134,7 @@ li{
 .parentImg {
   background: #fadfbc;
   width: 45px;
+  height: 45px;
   margin-right: 40px;
   border-radius: 50%;
   overflow: hidden;
