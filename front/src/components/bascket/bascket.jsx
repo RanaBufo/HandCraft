@@ -211,6 +211,10 @@ function Bascket() {
     }
   };
 
+  const goOrders = () => {
+    navigate("/order")
+  }
+
   return loading ? (
     <>
       {items.map((item) => (
@@ -229,6 +233,8 @@ function Bascket() {
           </div>
         </div>
       ))}
+      {items.length > 0 && <button onClick={goOrders} className="centerC">Оформить заказ</button>}
+
     </>
   ) : (
     <p>Loading...</p>

@@ -18,7 +18,7 @@ namespace HandCrafter.DataBase
         [property: Required]
         public DateOnly Birthday { get; set; }
         public ICollection<BasketDB> Basket { get; set; } = new List<BasketDB>();
-        public ICollection<AddressDB> Address { get; set; } = new List<AddressDB>();
+        public ICollection<AddressDB>? Address { get; set; } = new List<AddressDB>();
         public ContactDB? Contact { get; set; }
 
     }

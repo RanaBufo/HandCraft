@@ -2,6 +2,9 @@
 using HandCrafter.Migrations;
 using HandCrafter.Model;
 using System.Data.Entity;
+using System.Diagnostics.Metrics;
+using System.Linq;
+using System.Net;
 
 namespace HandCrafter.Services
 {
@@ -25,7 +28,20 @@ namespace HandCrafter.Services
                     Password = newUser.Contact.Password,
                     Phone = newUser.Contact.Phone,
                     IdRole = newUser.Contact.IdRole
-                }
+                },
+                Address = newUser.Address
+                ?.Select(a => new AddressDB
+                {
+                    Country = a.Country,
+                    City = a.City,
+                    Street = a.Street,
+                    Region = a.Region,
+                    House = a.House,
+                    Entrance = a.Entrance,
+                    Room = a.Room,
+                    Intercom = a.Intercom
+
+                }).ToList()
             };
             _db.Users.Add(user);
             _db.SaveChanges();
@@ -34,26 +50,37 @@ namespace HandCrafter.Services
         public List<UserDB> GetUsersService()
         {
             var users = _db.Users
-                .Join(_db.Contacts,
-                u => u.Id,
-                c => c.IdUser,
-                (u, c) => new UserDB
+            .Include(u => u.Contact)
+            .Include(u => u.Address)
+            .Select(u => new UserDB
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Patronymic = u.Patronymic,
+                Description = u.Description,
+                Birthday = u.Birthday,
+                Contact = u.Contact != null ? new ContactDB
                 {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Patronymic = u.Patronymic,
-                    Description = u.Description,
-                    Birthday = u.Birthday,
-                    Contact = new ContactDB
-                    {
-                        Email = c.Email,
-                        Password = c.Password,
-                        Phone = c.Phone,
-                        Role = c.Role
-                    }
-                    
-                }).ToList();
+                    Email = u.Contact.Email,
+                    Phone = u.Contact.Phone,
+                    IdRole = u.Contact.IdRole,
+                    Role = u.Contact.Role
+                } : null,
+                Address = u.Address != null ? u.Address.Select(a => new AddressDB
+                {
+                    ID = a.ID,
+                    Country = a.Country,
+                    Region = a.Region,
+                    City = a.City,
+                    Street = a.Street,
+                    House = a.House,
+                    Entrance = a.Entrance,
+                    Room = a.Room,
+                    Intercom = a.Intercom
+                }).ToList() : new List<AddressDB>()
+            }).ToList();
+
             return users;
         }
 

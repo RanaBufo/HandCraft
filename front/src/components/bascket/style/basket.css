@@ -1,43 +1,52 @@
 .in-block-basket {
-    margin: 30px;
-    z-index: 0;
-    background: linear-gradient(90deg, rgba(255,193,189,1) 0%, rgba(255,128,127,1) 100%);
-    padding: 30px;
-    border-radius: 20px;
-    font-size: 12pt;
-    color: #fdfbfb;
-    font-size: 18pt;
-  }
-  
-  .p-in-basket {
-    margin-right: 30px;
-  }
-  
-  .content-basket {
-    display: flex;
-    position: relative;
-    z-index: 0;
-    justify-content: flex-end; 
-  }
-  
-  .button-basket {
-    min-width: 35px;
-    position: relative;
-    height: 35px;
-    z-index: 0;
-    margin-right: 30px;
-    margin-top: 18px;
-    border-color: #fdfbfb;
-    color: #fdfbfb;
-    padding: 15px;
-    z-index: 9999;
-    padding-top: 5px;
-  }
-  
-  .button-basket:hover {
-    background: #fdfbfb;
-    color: rgba(255,128,127,1);
-    padding-top: 8px;
-    cursor: pointer;
-  }
-  
+  margin: 30px;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 193, 189, 1) 0%,
+    rgba(255, 128, 127, 1) 100%
+  );
+  padding: 30px;
+  border-radius: 20px;
+  font-size: 12pt;
+  color: #fdfbfb;
+  font-size: 18pt;
+}
+
+.p-in-basket {
+  margin-right: 30px;
+}
+
+.content-basket {
+  display: flex;
+  position: relative;
+  z-index: 0;
+  justify-content: flex-end;
+}
+
+.button-basket {
+  min-width: 35px;
+  position: relative;
+  height: 35px;
+  z-index: 0;
+  margin-right: 30px;
+  margin-top: 18px;
+  border-color: #fdfbfb;
+  color: #fdfbfb;
+  padding: 15px;
+  z-index: 9999;
+  padding-top: 5px;
+}
+
+.button-basket:hover {
+  background: #fdfbfb;
+  color: rgba(255, 128, 127, 1);
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.centerC {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}

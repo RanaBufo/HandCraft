@@ -57,6 +57,8 @@ function Login() {
   };
   return (
     <>
+    <div className="back">
+    </div>
       <img className="rightSH" src={nodeRight}></img>
       <img className="leftSH" src={nodeLeft}></img>
       <div className="in-block">

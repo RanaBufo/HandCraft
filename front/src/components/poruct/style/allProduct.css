@@ -114,5 +114,69 @@
 }
 
 .position-el{
-  margin-left: 150px;
+  margin-left: 280px;
+  overflow-y: auto;
+  max-width: 1500px;
+}
+.rightUndo{
+  
+  position: absolute;
+  margin: 0;
+  right: 0;
+  top: 500px;
+  transform: scaleX(-1);
+  z-index: -3;
+  
+}
+.leftUndo{
+  position: absolute;
+  margin: 0;
+  top: 500px;
+  left: 0;
+  z-index: -3;
+}
+
+.fixedPosition {
+  position: fixed;
+  top: 150px; /* Вы можете настроить эту позицию в соответствии с вашими потребностями */
+}
+.topBlock{
+  width: 130%;
+  height: 140px;
+  position: relative;
+  left: -10px;
+  top: -100px;
+  
+  padding-top: 160px;
+  background: linear-gradient(
+    0deg,
+    rgba(166, 206, 218, 1) 0%,
+    rgba(159, 200, 217, 1) 100%
+  );
+  margin: 0;
+  display: flex;
+  
+  overflow: hidden;
+  border-bottom: 30px solid #F0DEC6;
+  
+}
+
+
+.tovarTitle{
+  
+  position: absolute;
+  font-size: 34pt;
+  color: #FF7B78;
+  font-weight: bold;
+  margin: 0;
+  top: 150px;
+  margin-left: 1300px;
+}
+.circleImg{
+  position: absolute;
+  top: -50px;
+  overflow: 40%;
+}
+.hideScroll {
+  overflow-y: hidden;
 }
